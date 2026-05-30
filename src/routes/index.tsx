@@ -68,9 +68,18 @@ const CAPABILITIES = [
 ];
 
 const GALLERY = [
-  "https://images.unsplash.com/photo-1577080447571-ce5379c39c47?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1565017228812-ab07a4d99c46?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=1200&q=80",
+  {
+    src: "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=1200&q=80",
+    alt: "Container terminal with stacked containers",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1568430462989-44163eb1752f?auto=format&fit=crop&w=1200&q=80",
+    alt: "Passenger ferry at sea",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=1200&q=80",
+    alt: "Cargo port with cranes at dusk",
+  },
 ];
 
 function HomePage() {
@@ -89,15 +98,18 @@ function HomePage() {
 
         <div className="container-x flex min-h-[100svh] flex-col justify-center pt-28 pb-24">
           <Reveal>
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--color-cyan-400)] backdrop-blur">
-              <Waves className="h-3.5 w-3.5" />
-              Marine Engineering · Since 2019
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[color:var(--color-cyan-400)]/30 bg-[color:var(--color-cyan-400)]/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[color:var(--color-cyan-400)] backdrop-blur-md shadow-[0_0_24px_-8px_rgba(34,184,207,0.5)] sm:px-4 sm:text-xs sm:tracking-[0.2em]">
+              <span className="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-[color:var(--color-cyan-400)]" />
+              <Waves className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+              <span>Marine Engineering</span>
+              <span className="h-3 w-px bg-[color:var(--color-cyan-400)]/40" />
+              <span>Since 2019</span>
             </p>
           </Reveal>
           <Reveal delay={120}>
             <h1
               className="max-w-5xl text-balance font-display font-bold text-white"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
+              style={{ fontSize: "clamp(2rem, 6vw, 4.5rem)" }}
             >
               Engineering the{" "}
               <span className="bg-gradient-to-r from-[color:var(--color-cyan-400)] to-white bg-clip-text text-transparent">
@@ -107,7 +119,7 @@ function HomePage() {
             </h1>
           </Reveal>
           <Reveal delay={220}>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--color-steel-200)] md:text-xl">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-steel-200)] md:text-xl">
               Marigaiss India supplies, rents and engineers maritime and heavy-machinery
               solutions — propellers, ferries, tugs, barges, cranes and machined components,
               trusted by industry from Kakinada outward.
@@ -305,16 +317,16 @@ function HomePage() {
             subtitle="From port operations to industrial sites — the environments where our equipment and engineering earn their keep."
           />
           <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {GALLERY.map((src, i) => (
-              <Reveal key={src} delay={i * 100}>
+            {GALLERY.map((g, i) => (
+              <Reveal key={g.src} delay={i * 100}>
                 <Link
                   to="/clients"
                   className="group block overflow-hidden rounded-2xl bg-[color:var(--color-navy-900)]"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img
-                      src={src}
-                      alt="Maritime operations"
+                      src={g.src}
+                      alt={g.alt}
                       loading="lazy"
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     />
