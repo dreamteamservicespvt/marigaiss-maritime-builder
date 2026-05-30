@@ -208,7 +208,6 @@ function AboutPage() {
             ].map((d, i) => (
               <Reveal key={d.name} delay={i * 120}>
                 <div className="group flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white p-5 shadow-[var(--shadow-card)] sm:flex-row sm:p-6">
-                  <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-xl sm:h-44 sm:w-40">
                   <div className="relative aspect-square w-full shrink-0 overflow-hidden rounded-xl sm:w-44">
                     <img
                       src={d.image}
