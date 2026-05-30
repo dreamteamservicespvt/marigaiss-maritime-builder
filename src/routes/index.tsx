@@ -13,6 +13,10 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { CTABand, SectionHeading, StatCountUp } from "@/components/site/ui";
+import galleryTugboat from "@/assets/gallery-tugboat.jpg";
+import galleryCrane from "@/assets/gallery-crane.jpg";
+import galleryFerry from "@/assets/gallery-ferry.jpg";
+import galleryPropeller from "@/assets/gallery-propeller.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -68,18 +72,9 @@ const CAPABILITIES = [
 ];
 
 const GALLERY = [
-  {
-    src: "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=1200&q=80",
-    alt: "Container terminal with stacked containers",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1568430462989-44163eb1752f?auto=format&fit=crop&w=1200&q=80",
-    alt: "Passenger ferry at sea",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=1200&q=80",
-    alt: "Cargo port with cranes at dusk",
-  },
+  { src: galleryCrane, alt: "Industrial port crane lifting cargo" },
+  { src: galleryTugboat, alt: "Harbour tugboat in operation" },
+  { src: galleryPropeller, alt: "Precision marine propeller component" },
 ];
 
 function HomePage() {
@@ -89,8 +84,8 @@ function HomePage() {
       <section className="relative isolate min-h-[100svh] overflow-hidden bg-hero">
         <div className="absolute inset-0 -z-10">
           <img
-            src="https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=2000&q=80"
-            alt="Cargo port at dusk with cranes and ships"
+            src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=2000&q=80"
+            alt="Aerial view of a container port with cranes"
             className="h-full w-full object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-navy-900)]/85 via-[color:var(--color-navy-800)]/70 to-[color:var(--color-ocean-600)]/60" />
@@ -199,8 +194,8 @@ function HomePage() {
           <Reveal delay={150} className="relative">
             <div className="overflow-hidden rounded-2xl shadow-[var(--shadow-elegant)]">
               <img
-                src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1400&q=80"
-                alt="Tugboat in harbour"
+                src={galleryTugboat}
+                alt="Harbour tugboat at work"
                 className="aspect-[4/5] w-full object-cover"
                 loading="lazy"
               />
