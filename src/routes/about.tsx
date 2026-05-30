@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Award, Compass, Handshake, ShieldCheck } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { CTABand, PageHero, SectionHeading } from "@/components/site/ui";
 import galleryTugboat from "@/assets/gallery-tugboat.jpg";
