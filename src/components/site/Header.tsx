@@ -37,11 +37,12 @@ export function Header() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         onHero
           ? "bg-transparent"
-          : "bg-[color:var(--color-navy-900)]/95 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.05)]"
+          : "bg-[color:var(--color-navy-900)]/95 shadow-[0_1px_0_rgba(255,255,255,0.05)]"
       }`}
     >
       <div className="container-x flex h-18 items-center justify-between py-4">
@@ -99,10 +100,13 @@ export function Header() {
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
+    </header>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — rendered as sibling of <header> so that no ancestor
+          backdrop-filter / transform creates a containing block that would
+          break `position: fixed` on inner pages. */}
       <div
-        className={`fixed inset-0 top-[72px] z-40 origin-top bg-[color:var(--color-navy-900)] transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 top-[72px] z-[60] origin-top bg-[color:var(--color-navy-900)] transition-opacity duration-300 lg:hidden ${
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden={!open}
@@ -172,6 +176,6 @@ export function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }
