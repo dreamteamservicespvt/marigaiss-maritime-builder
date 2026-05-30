@@ -7,17 +7,31 @@ export function buildQuoteMessage(input: {
   service?: string;
   message?: string;
 }) {
+  const greeting = input.name
+    ? `Hello Marigaiss India team,\n\nMy name is ${input.name} and I'd like to enquire${
+        input.service ? ` about your *${input.service}* offering` : ""
+      }.`
+    : `Hello Marigaiss India team,\n\nI'd like to make an enquiry${
+        input.service ? ` about your *${input.service}* offering` : ""
+      }.`;
+
   const lines = [
     "*New Enquiry — Marigaiss India*",
+    "━━━━━━━━━━━━━━━━━━━━",
     "",
-    input.name ? `*Name:* ${input.name}` : null,
-    input.email ? `*Email:* ${input.email}` : null,
-    input.phone ? `*Phone:* ${input.phone}` : null,
-    input.service ? `*Service of interest:* ${input.service}` : null,
+    greeting,
     "",
-    input.message ? `*Message:*\n${input.message}` : null,
+    input.message ? `*Details*\n${input.message}` : null,
     "",
-    "— Sent from marigaissindia.com",
+    "*Contact details*",
+    input.name ? `• Name: ${input.name}` : null,
+    input.email ? `• Email: ${input.email}` : null,
+    input.phone ? `• Phone: ${input.phone}` : null,
+    input.service ? `• Service: ${input.service}` : null,
+    "",
+    "Looking forward to hearing back from you.",
+    "",
+    "— Sent via marigaissindia.com",
   ].filter(Boolean);
   return lines.join("\n");
 }

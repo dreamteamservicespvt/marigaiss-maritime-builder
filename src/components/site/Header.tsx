@@ -120,11 +120,21 @@ export function Header() {
           className="relative h-full overflow-y-auto bg-gradient-to-b from-[color:var(--color-navy-900)] via-[color:var(--color-navy-800)] to-[color:var(--color-navy-900)]"
         >
           <div className="container-x flex flex-col pt-6 pb-10">
-            <p className="px-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-[color:var(--color-cyan-400)]">
-              Menu
-            </p>
+            <div className="flex items-center justify-between px-2">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[color:var(--color-cyan-400)]">
+                Menu
+              </p>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white transition hover:bg-white/10"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
             <nav className="mt-4 flex flex-col">
-              {NAV.map((item, idx) => {
+              {NAV.map((item) => {
                 const active =
                   item.to === "/"
                     ? location.pathname === "/"
@@ -137,12 +147,7 @@ export function Header() {
                       active ? "text-[color:var(--color-cyan-400)]" : "text-white"
                     }`}
                   >
-                    <span className="flex items-center gap-3">
-                      <span className="font-mono text-[10px] tabular-nums text-[color:var(--color-steel-300)]">
-                        0{idx + 1}
-                      </span>
-                      {item.label}
-                    </span>
+                    <span>{item.label}</span>
                     <ArrowRight className="h-4 w-4 text-[color:var(--color-steel-300)] transition group-hover:translate-x-1 group-hover:text-[color:var(--color-cyan-400)]" />
                   </Link>
                 );

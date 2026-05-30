@@ -104,59 +104,69 @@ function ServicesPage() {
       />
 
       {/* SERVICE SECTIONS */}
-      <section className="py-20 md:py-28">
-        <div className="container-x space-y-24 md:space-y-32">
+      <section className="py-14 md:py-28">
+        <div className="container-x space-y-14 md:space-y-32">
           {SERVICES.map((s, i) => {
             const reverse = i % 2 === 1;
             return (
               <article
                 key={s.id}
                 id={s.id}
-                className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${
+                className={`grid items-center gap-6 md:grid-cols-2 md:gap-16 ${
                   reverse ? "md:[&>*:first-child]:order-2" : ""
                 }`}
               >
                 <Reveal className="relative">
-                  <div className="overflow-hidden rounded-2xl shadow-[var(--shadow-elegant)]">
+                  <div className="group relative overflow-hidden rounded-3xl border border-[color:var(--color-steel-200)] shadow-[var(--shadow-elegant)]">
                     <div className="relative">
                       <img
                         src={s.image}
                         alt={s.title}
-                        className="aspect-[4/3] w-full object-cover"
+                        className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-105"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-[color:var(--color-navy-900)]/30 mix-blend-multiply" />
+                      <div className="absolute inset-0 bg-gradient-to-tr from-[color:var(--color-navy-900)]/60 via-[color:var(--color-navy-900)]/15 to-transparent" />
+                      <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-[color:var(--color-navy-900)]/70 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--color-cyan-400)] backdrop-blur">
+                        0{i + 1} · Service
+                      </span>
                     </div>
                   </div>
                 </Reveal>
 
                 <Reveal delay={120}>
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[color:var(--color-mist-50)] text-[color:var(--color-ocean-500)]">
-                    <s.icon className="h-6 w-6" />
-                  </span>
-                  <h2 className="mt-5 text-balance font-display text-3xl font-bold text-[color:var(--color-navy-900)] md:text-4xl">
-                    {s.title}
-                  </h2>
-                  <p className="mt-4 text-lg leading-relaxed text-slate-600">{s.body}</p>
-                  <ul className="mt-6 space-y-3">
+                  <div className="rounded-3xl border border-[color:var(--color-steel-200)] bg-white p-6 shadow-[var(--shadow-card)] md:border-0 md:bg-transparent md:p-0 md:shadow-none">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[color:var(--color-ocean-500)] to-[color:var(--color-cyan-400)] text-white shadow-[var(--shadow-card)]">
+                        <s.icon className="h-6 w-6" />
+                      </span>
+                      <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-[color:var(--color-ocean-500)]">
+                        Marigaiss · Service
+                      </p>
+                    </div>
+                    <h2 className="mt-4 text-balance font-display text-2xl font-bold text-[color:var(--color-navy-900)] md:mt-5 md:text-4xl">
+                      {s.title}
+                    </h2>
+                    <p className="mt-3 text-base leading-relaxed text-slate-600 md:mt-4 md:text-lg">{s.body}</p>
+                    <ul className="mt-5 space-y-2.5 md:mt-6 md:space-y-3">
                     {s.items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-center gap-3 text-[color:var(--color-navy-900)]"
+                        className="flex items-center gap-3 text-sm text-[color:var(--color-navy-900)] md:text-base"
                       >
                         <span className="h-1.5 w-6 rounded-full bg-[color:var(--color-cyan-400)]" />
                         <span className="font-medium">{item}</span>
                       </li>
                     ))}
-                  </ul>
-                  <Link
-                    to="/contact"
-                    search={{ subject: s.title } as never}
-                    className="group mt-8 inline-flex items-center gap-2 rounded-xl bg-cta px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5"
-                  >
-                    Enquire about {s.title}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
+                    </ul>
+                    <Link
+                      to="/contact"
+                      search={{ subject: s.title } as never}
+                      className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-cta px-6 py-3.5 text-sm font-semibold text-white shadow-[var(--shadow-elegant)] transition hover:-translate-y-0.5 md:mt-8 md:w-auto"
+                    >
+                      Enquire about {s.title}
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </div>
                 </Reveal>
               </article>
             );
@@ -171,7 +181,35 @@ function ServicesPage() {
             eyebrow="How we work"
             title="Four steps from brief to handover."
           />
-          <div className="mt-14 grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {/* Mobile: horizontal auto-scroll right → left */}
+          <div className="mt-12 sm:hidden">
+            <div className="card-marquee -mx-5 px-5">
+              <div className="card-marquee__track">
+                {[...PROCESS, ...PROCESS].map((p, i) => (
+                  <div
+                    key={p.title + i}
+                    className="flex w-[78vw] max-w-[19rem] shrink-0 flex-col overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white shadow-[var(--shadow-card)]"
+                  >
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <img src={p.image} alt={p.title} loading="lazy" className="h-full w-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-navy-900)]/70 to-transparent" />
+                      <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 font-mono text-[10px] font-bold tracking-widest text-[color:var(--color-ocean-500)]">
+                        STEP 0{(i % PROCESS.length) + 1}
+                      </span>
+                      <span className="absolute bottom-4 left-4 flex h-11 w-11 items-center justify-center rounded-xl bg-cta text-white">
+                        <p.icon className="h-5 w-5" />
+                      </span>
+                    </div>
+                    <div className="p-5">
+                      <h3 className="font-display text-base font-semibold text-[color:var(--color-navy-900)]">{p.title}</h3>
+                      <p className="mt-2 text-xs leading-relaxed text-slate-600">{p.body}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="mt-14 hidden auto-rows-fr gap-6 sm:grid md:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((p, i) => (
               <Reveal key={p.title + i} delay={i * 80} className="h-full">
                 <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white shadow-[var(--shadow-card)] transition hover:-translate-y-1">

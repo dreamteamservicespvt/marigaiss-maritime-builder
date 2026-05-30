@@ -158,6 +158,63 @@
     .logo-marquee__track { animation: none; }
   }
 
+  /* Card marquee — right→left (default) and left→right */
+  .card-marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  }
+  .card-marquee__track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: card-marquee-rtl 38s linear infinite;
+  }
+  .card-marquee--ltr .card-marquee__track {
+    animation: card-marquee-ltr 38s linear infinite;
+  }
+  @keyframes card-marquee-rtl {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes card-marquee-ltr {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card-marquee__track { animation: none; }
+  }
+
+  /* 3D perspective carousel for Capabilities */
+  .cap-stage {
+    perspective: 1400px;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  }
+  .cap-track {
+    display: flex;
+    gap: 1.25rem;
+    width: max-content;
+    transform-style: preserve-3d;
+    animation: cap-scroll 42s linear infinite;
+  }
+  .cap-stage:hover .cap-track { animation-play-state: paused; }
+  .cap-card {
+    transform: rotateY(-8deg);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+  .cap-card:nth-child(even) { transform: rotateY(8deg); }
+  .cap-card:hover { transform: rotateY(0) translateZ(40px); }
+  @keyframes cap-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cap-track { animation: none; }
+    .cap-card, .cap-card:nth-child(even) { transform: none; }
+  }
+
   .duotone-navy {
     position: relative;
   }

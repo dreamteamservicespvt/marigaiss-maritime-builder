@@ -10,7 +10,10 @@ import {
   ArrowRight,
   Container,
   CheckCircle2,
+  Plus,
+  Minus,
 } from "lucide-react";
+import { useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { CTABand, SectionHeading, StatCountUp } from "@/components/site/ui";
 import galleryTugboat from "@/assets/gallery-tugboat.jpg";
@@ -65,6 +68,36 @@ const SERVICES = [
     title: "Material Handling",
     desc: "Straddle carriers (platters) and precision machined components.",
     image: galleryFerry,
+  },
+];
+
+const WHY = [
+  { icon: Anchor, title: "Marine engineering expertise", body: "Specification, sourcing and supply led by a qualified marine engineer.", image: capabilityEngineering },
+  { icon: Truck, title: "Rental fleet & heavy lifting", body: "Tugs, barges and cranes ready to deploy for the work ahead.", image: galleryTugboat },
+  { icon: Wrench, title: "Precision machined components", body: "Built-to-spec parts where tolerance and reliability matter.", image: galleryPropeller },
+  { icon: ShieldCheck, title: "Founder-led delivery", body: "Direct accountability from first call to final handover.", image: capabilityShipbuilding },
+];
+
+const FAQS = [
+  {
+    q: "What services does Marigaiss India offer?",
+    a: "We supply marine equipment (propellers, ferries, fittings), rent tugs, barges and dumb-barge setups, deliver industrial and derrick cranes, and machine precision components for maritime and industrial clients.",
+  },
+  {
+    q: "Where are you located and do you serve outside Kakinada?",
+    a: "Our office is on Cinema Road, Kakinada, Andhra Pradesh. We deliver and mobilise rental assets across India, with our core operating radius along the east coast.",
+  },
+  {
+    q: "How quickly can you mobilise rental equipment?",
+    a: "Most rental jobs are mobilised within a few working days. Share your site, scope and timeline and we'll come back with a confirmed window within one business day.",
+  },
+  {
+    q: "Can you supply built-to-spec machined components?",
+    a: "Yes — share your drawings or requirements and we will specify, machine and deliver components against your tolerance and material requirements.",
+  },
+  {
+    q: "How do I request a quote?",
+    a: "Use the Get a Quote button to chat with us on WhatsApp, or fill the Contact form. We typically respond within one business day.",
   },
 ];
 
@@ -233,7 +266,34 @@ function HomePage() {
             title="Four ways we move maritime work forward."
             subtitle="From propellers to platters — a focused portfolio built around what ports, yards and industrial sites actually need."
           />
-          <div className="mt-14 grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Mobile: horizontal auto-scroll (right → left) */}
+          <div className="mt-12 sm:hidden">
+            <div className="card-marquee -mx-5 px-5">
+              <div className="card-marquee__track">
+                {[...SERVICES, ...SERVICES].map((s, i) => (
+                  <Link
+                    key={s.title + i}
+                    to="/services"
+                    className="group flex w-[78vw] max-w-[19rem] shrink-0 flex-col overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <img src={s.image} alt={s.title} loading="lazy" className="h-full w-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-navy-900)]/70 to-transparent" />
+                      <span className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white/95 text-[color:var(--color-ocean-500)] shadow-[var(--shadow-card)]">
+                        <s.icon className="h-5 w-5" />
+                      </span>
+                    </div>
+                    <div className="flex flex-1 flex-col p-5">
+                      <h3 className="font-display text-base font-semibold text-[color:var(--color-navy-900)]">{s.title}</h3>
+                      <p className="mt-2 flex-1 text-xs leading-relaxed text-slate-600">{s.desc}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* Desktop / tablet: grid */}
+          <div className="mt-14 hidden auto-rows-fr gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-4">
             {SERVICES.map((s, i) => (
               <Reveal key={s.title} delay={i * 80} className="h-full">
                 <Link
@@ -256,9 +316,7 @@ function HomePage() {
                     <h3 className="font-display text-lg font-semibold text-[color:var(--color-navy-900)]">
                       {s.title}
                     </h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
-                      {s.desc}
-                    </p>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{s.desc}</p>
                     <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[color:var(--color-ocean-500)]">
                       Learn more
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -278,22 +336,54 @@ function HomePage() {
             eyebrow="Why Marigaiss"
             title="A small team. A serious capability set."
           />
-          <div className="mt-14 grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              { icon: Anchor, title: "Marine engineering expertise", body: "Specification, sourcing and supply led by a qualified marine engineer." },
-              { icon: Truck, title: "Rental fleet & heavy lifting", body: "Tugs, barges and cranes ready to deploy for the work ahead." },
-              { icon: Wrench, title: "Precision machined components", body: "Built-to-spec parts where tolerance and reliability matter." },
-              { icon: ShieldCheck, title: "Founder-led delivery", body: "Direct accountability from first call to final handover." },
-            ].map((f, i) => (
+          {/* Mobile: horizontal auto-scroll (left → right) */}
+          <div className="mt-12 sm:hidden">
+            <div className="card-marquee card-marquee--ltr -mx-5 px-5">
+              <div className="card-marquee__track">
+                {[...WHY, ...WHY].map((f, i) => (
+                  <div
+                    key={f.title + i}
+                    className="relative flex w-[78vw] max-w-[19rem] shrink-0 flex-col overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <img src={f.image} alt={f.title} loading="lazy" className="h-full w-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-navy-900)]/75 via-[color:var(--color-navy-900)]/20 to-transparent" />
+                      <span className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white/95 text-[color:var(--color-ocean-500)] shadow-[var(--shadow-card)]">
+                        <f.icon className="h-5 w-5" />
+                      </span>
+                    </div>
+                    <div className="flex flex-1 flex-col p-5">
+                      <h3 className="font-display text-base font-semibold text-[color:var(--color-navy-900)]">{f.title}</h3>
+                      <p className="mt-2 flex-1 text-xs leading-relaxed text-slate-600">{f.body}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* Desktop / tablet: image cards grid */}
+          <div className="mt-14 hidden auto-rows-fr gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-4">
+            {WHY.map((f, i) => (
               <Reveal key={f.title} delay={i * 80} className="h-full">
-                <div className="flex h-full flex-col rounded-2xl border border-[color:var(--color-steel-200)] p-7 transition hover:border-[color:var(--color-ocean-500)] hover:shadow-[var(--shadow-card)]">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[color:var(--color-mist-50)] text-[color:var(--color-ocean-500)]">
-                    <f.icon className="h-6 w-6" />
-                  </span>
-                  <h3 className="mt-5 font-display text-lg font-semibold text-[color:var(--color-navy-900)]">
-                    {f.title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{f.body}</p>
+                <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white transition hover:-translate-y-1 hover:border-[color:var(--color-ocean-500)] hover:shadow-[var(--shadow-card)]">
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img
+                      src={f.image}
+                      alt={f.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-navy-900)]/65 to-transparent" />
+                    <span className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-xl bg-white/95 text-[color:var(--color-ocean-500)] shadow-[var(--shadow-card)]">
+                      <f.icon className="h-5 w-5" />
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="font-display text-lg font-semibold text-[color:var(--color-navy-900)]">
+                      {f.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{f.body}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -318,33 +408,33 @@ function HomePage() {
             subtitle="Six interlocking strengths that take a marine project from first sketch to commissioned delivery."
             light
           />
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {CAPABILITIES.map((c, i) => (
-              <Reveal key={c.name} delay={i * 70} className="h-full">
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
-                  <div className="relative aspect-[16/10] overflow-hidden">
+          {/* 3D auto-scrolling capability carousel */}
+          <div className="cap-stage mt-14 py-6">
+            <div className="cap-track">
+              {[...CAPABILITIES, ...CAPABILITIES].map((c, i) => (
+                <div
+                  key={c.name + i}
+                  className="cap-card group relative w-[78vw] max-w-[22rem] shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
                     <img
                       src={c.image}
                       alt={c.name}
                       loading="lazy"
-                      className="h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                      className="h-full w-full object-cover opacity-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-navy-900)] via-[color:var(--color-navy-900)]/40 to-transparent" />
                     <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-[color:var(--color-cyan-400)]/40 bg-[color:var(--color-navy-900)]/70 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-cyan-400)] backdrop-blur">
-                      0{i + 1}
+                      0{(i % CAPABILITIES.length) + 1}
                     </span>
                   </div>
                   <div className="p-6">
-                    <h3 className="font-display text-lg font-semibold text-white">
-                      {c.name}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[color:var(--color-steel-200)]">
-                      {c.blurb}
-                    </p>
+                    <h3 className="font-display text-lg font-semibold text-white">{c.name}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[color:var(--color-steel-200)]">{c.blurb}</p>
                   </div>
                 </div>
-              </Reveal>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -380,9 +470,92 @@ function HomePage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="bg-[color:var(--color-mist-50)] py-20 md:py-28">
+        <div className="container-x grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+          <Reveal>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--color-ocean-500)]">
+              FAQ
+            </p>
+            <h2 className="text-balance font-display text-3xl font-bold text-[color:var(--color-navy-900)] md:text-5xl">
+              Answers, before you ask.
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-slate-600 md:text-lg">
+              The questions clients raise most often — covered up front. If you need
+              specifics for your project, our team is one message away.
+            </p>
+            <Link
+              to="/contact"
+              className="mt-7 inline-flex items-center gap-2 rounded-xl bg-cta px-6 py-3.5 text-sm font-semibold text-white shadow-[var(--shadow-elegant)] transition hover:-translate-y-0.5"
+            >
+              Talk to our team
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+          <Reveal delay={120}>
+            <FAQList />
+          </Reveal>
+        </div>
+      </section>
+
       <CTABand
         secondary={{ label: "See Our Services", to: "/services" }}
       />
     </>
+  );
+}
+
+function FAQList() {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <div className="space-y-3">
+      {FAQS.map((f, i) => {
+        const isOpen = open === i;
+        return (
+          <div
+            key={f.q}
+            className={`overflow-hidden rounded-2xl border bg-white transition ${
+              isOpen
+                ? "border-[color:var(--color-ocean-500)] shadow-[var(--shadow-card)]"
+                : "border-[color:var(--color-steel-200)] hover:border-[color:var(--color-ocean-500)]/40"
+            }`}
+          >
+            <button
+              type="button"
+              onClick={() => setOpen(isOpen ? null : i)}
+              aria-expanded={isOpen}
+              className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-7"
+            >
+              <span className="flex items-center gap-4">
+                <span className="hidden font-mono text-xs tabular-nums text-[color:var(--color-ocean-500)] sm:inline">
+                  0{i + 1}
+                </span>
+                <span className="font-display text-base font-semibold text-[color:var(--color-navy-900)] md:text-lg">
+                  {f.q}
+                </span>
+              </span>
+              <span
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white transition ${
+                  isOpen ? "bg-[color:var(--color-ocean-500)] rotate-0" : "bg-[color:var(--color-navy-900)]"
+                }`}
+              >
+                {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+              </span>
+            </button>
+            <div
+              className={`grid transition-all duration-300 ease-out ${
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <p className="px-5 pb-6 text-sm leading-relaxed text-slate-600 md:px-7 md:text-base">
+                  {f.a}
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 }
