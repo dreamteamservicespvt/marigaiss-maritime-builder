@@ -17,6 +17,8 @@ import galleryTugboat from "@/assets/gallery-tugboat.jpg";
 import galleryCrane from "@/assets/gallery-crane.jpg";
 import galleryFerry from "@/assets/gallery-ferry.jpg";
 import galleryPropeller from "@/assets/gallery-propeller.jpg";
+import capabilityEngineering from "@/assets/capability-engineering.jpg";
+import capabilityShipbuilding from "@/assets/capability-shipbuilding.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,31 +46,35 @@ const SERVICES = [
     icon: Ship,
     title: "Marine Equipment",
     desc: "Boat propellers and passenger ferries engineered for reliability.",
+    image: galleryPropeller,
   },
   {
     icon: Anchor,
     title: "Rental Assets",
     desc: "Tug & barge services and dumb-barge setups, on call when you need them.",
+    image: galleryTugboat,
   },
   {
     icon: Construction,
     title: "Industrial Cranes",
     desc: "Standard industrial cranes and derrick cranes for heavy lifting.",
+    image: galleryCrane,
   },
   {
     icon: Container,
     title: "Material Handling",
     desc: "Straddle carriers (platters) and precision machined components.",
+    image: galleryFerry,
   },
 ];
 
-const CAPABILITIES = [
-  "AutoCAD",
-  "Naval Architecture",
-  "Shipbuilding",
-  "Requirements Analysis",
-  "Marine Engineering",
-  "Leadership",
+const CAPABILITIES: { name: string; blurb: string; image: string }[] = [
+  { name: "AutoCAD", blurb: "Drafted to spec — drawings ready for the floor.", image: capabilityEngineering },
+  { name: "Naval Architecture", blurb: "Hull, layout and load-line thinking from day one.", image: galleryPropeller },
+  { name: "Shipbuilding", blurb: "Yard-tested experience from keel to commissioning.", image: capabilityShipbuilding },
+  { name: "Requirements Analysis", blurb: "Translating operating realities into clear specs.", image: capabilityEngineering },
+  { name: "Marine Engineering", blurb: "Founder-led marine engineering judgement.", image: galleryTugboat },
+  { name: "Leadership", blurb: "Direct accountability across every project.", image: galleryCrane },
 ];
 
 const GALLERY = [
@@ -227,26 +233,37 @@ function HomePage() {
             title="Four ways we move maritime work forward."
             subtitle="From propellers to platters — a focused portfolio built around what ports, yards and industrial sites actually need."
           />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {SERVICES.map((s, i) => (
-              <Reveal key={s.title} delay={i * 80}>
+              <Reveal key={s.title} delay={i * 80} className="h-full">
                 <Link
                   to="/services"
-                  className="group flex h-full flex-col rounded-2xl border border-[color:var(--color-steel-200)] bg-white p-7 transition hover:-translate-y-1 hover:border-[color:var(--color-cyan-400)] hover:shadow-[var(--shadow-card)]"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white transition hover:-translate-y-1 hover:border-[color:var(--color-cyan-400)] hover:shadow-[var(--shadow-card)]"
                 >
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[color:var(--color-mist-50)] text-[color:var(--color-ocean-500)] transition group-hover:bg-cta group-hover:text-white">
-                    <s.icon className="h-6 w-6" />
-                  </span>
-                  <h3 className="mt-6 font-display text-xl font-semibold text-[color:var(--color-navy-900)]">
-                    {s.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">
-                    {s.desc}
-                  </p>
-                  <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[color:var(--color-ocean-500)]">
-                    Learn more
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-navy-900)]/70 to-transparent" />
+                    <span className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-xl bg-white/95 text-[color:var(--color-ocean-500)] shadow-[var(--shadow-card)]">
+                      <s.icon className="h-5 w-5" />
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="font-display text-lg font-semibold text-[color:var(--color-navy-900)]">
+                      {s.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                      {s.desc}
+                    </p>
+                    <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[color:var(--color-ocean-500)]">
+                      Learn more
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
                 </Link>
               </Reveal>
             ))}
@@ -261,20 +278,22 @@ function HomePage() {
             eyebrow="Why Marigaiss"
             title="A small team. A serious capability set."
           />
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
               { icon: Anchor, title: "Marine engineering expertise", body: "Specification, sourcing and supply led by a qualified marine engineer." },
               { icon: Truck, title: "Rental fleet & heavy lifting", body: "Tugs, barges and cranes ready to deploy for the work ahead." },
               { icon: Wrench, title: "Precision machined components", body: "Built-to-spec parts where tolerance and reliability matter." },
               { icon: ShieldCheck, title: "Founder-led delivery", body: "Direct accountability from first call to final handover." },
             ].map((f, i) => (
-              <Reveal key={f.title} delay={i * 80}>
-                <div className="rounded-2xl border border-[color:var(--color-steel-200)] p-7 transition hover:border-[color:var(--color-ocean-500)]">
-                  <f.icon className="h-7 w-7 text-[color:var(--color-ocean-500)]" />
+              <Reveal key={f.title} delay={i * 80} className="h-full">
+                <div className="flex h-full flex-col rounded-2xl border border-[color:var(--color-steel-200)] p-7 transition hover:border-[color:var(--color-ocean-500)] hover:shadow-[var(--shadow-card)]">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[color:var(--color-mist-50)] text-[color:var(--color-ocean-500)]">
+                    <f.icon className="h-6 w-6" />
+                  </span>
                   <h3 className="mt-5 font-display text-lg font-semibold text-[color:var(--color-navy-900)]">
                     {f.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{f.body}</p>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{f.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -283,23 +302,50 @@ function HomePage() {
       </section>
 
       {/* CAPABILITIES BAND */}
-      <section className="bg-[color:var(--color-navy-900)] py-16">
-        <div className="container-x">
-          <Reveal>
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--color-cyan-400)]">
-              Capabilities
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {CAPABILITIES.map((c) => (
-                <span
-                  key={c}
-                  className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur"
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
-          </Reveal>
+      <section className="relative overflow-hidden bg-[color:var(--color-navy-900)] py-20 md:py-28">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 20% 20%, var(--color-cyan-400) 0, transparent 35%), radial-gradient(circle at 80% 70%, var(--color-ocean-500) 0, transparent 40%)",
+          }}
+          aria-hidden
+        />
+        <div className="container-x relative">
+          <SectionHeading
+            eyebrow="Capabilities"
+            title="The disciplines we bring to every job."
+            subtitle="Six interlocking strengths that take a marine project from first sketch to commissioned delivery."
+            light
+          />
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {CAPABILITIES.map((c, i) => (
+              <Reveal key={c.name} delay={i * 70} className="h-full">
+                <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img
+                      src={c.image}
+                      alt={c.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-navy-900)] via-[color:var(--color-navy-900)]/40 to-transparent" />
+                    <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-[color:var(--color-cyan-400)]/40 bg-[color:var(--color-navy-900)]/70 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-cyan-400)] backdrop-blur">
+                      0{i + 1}
+                    </span>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-display text-lg font-semibold text-white">
+                      {c.name}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[color:var(--color-steel-200)]">
+                      {c.blurb}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
