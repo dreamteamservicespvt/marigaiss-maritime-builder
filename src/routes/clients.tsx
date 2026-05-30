@@ -44,8 +44,8 @@ const GALLERY: { src: string; caption: string; cat: Exclude<Cat, "All"> }[] = [
   { src: "https://images.unsplash.com/photo-1568430462989-44163eb1752f?auto=format&fit=crop&w=1200&q=80", caption: "Passenger ferry operations", cat: "Marine" },
   { src: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1200&q=80", caption: "Tug & barge support", cat: "Rental" },
   { src: "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=1200&q=80", caption: "Industrial crane installation", cat: "Cranes" },
-  { src: "https://images.unsplash.com/photo-1577080447571-ce5379c39c47?auto=format&fit=crop&w=1200&q=80", caption: "Container & material handling", cat: "Handling" },
-  { src: "https://images.unsplash.com/photo-1565017228812-ab07a4d99c46?auto=format&fit=crop&w=1200&q=80", caption: "Marine equipment supply", cat: "Marine" },
+  { src: "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=1200&q=80", caption: "Container & material handling", cat: "Handling" },
+  { src: "https://images.unsplash.com/photo-1493804714600-6edb1cd93080?auto=format&fit=crop&w=1200&q=80", caption: "Marine equipment supply", cat: "Marine" },
   { src: "https://images.unsplash.com/photo-1518176258769-f227c798150e?auto=format&fit=crop&w=1200&q=80", caption: "Derrick crane operations", cat: "Cranes" },
 ];
 
