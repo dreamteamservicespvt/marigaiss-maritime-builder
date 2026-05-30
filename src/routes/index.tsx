@@ -470,6 +470,34 @@ function HomePage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="bg-[color:var(--color-mist-50)] py-20 md:py-28">
+        <div className="container-x grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+          <Reveal>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--color-ocean-500)]">
+              FAQ
+            </p>
+            <h2 className="text-balance font-display text-3xl font-bold text-[color:var(--color-navy-900)] md:text-5xl">
+              Answers, before you ask.
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-slate-600 md:text-lg">
+              The questions clients raise most often — covered up front. If you need
+              specifics for your project, our team is one message away.
+            </p>
+            <Link
+              to="/contact"
+              className="mt-7 inline-flex items-center gap-2 rounded-xl bg-cta px-6 py-3.5 text-sm font-semibold text-white shadow-[var(--shadow-elegant)] transition hover:-translate-y-0.5"
+            >
+              Talk to our team
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+          <Reveal delay={120}>
+            <FAQList />
+          </Reveal>
+        </div>
+      </section>
+
       <CTABand
         secondary={{ label: "See Our Services", to: "/services" }}
       />
