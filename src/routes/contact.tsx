@@ -79,23 +79,23 @@ function ContactPage() {
         subtitle="Tell us about the equipment, rental or component you need — we typically respond within one business day."
       />
 
-      <section className="py-20 md:py-28">
+      <section className="py-12 md:py-28">
         <div className="container-x grid gap-10 lg:grid-cols-[1.2fr_1fr]">
           {/* FORM */}
           <Reveal>
             <form
               onSubmit={onSubmit}
               noValidate
-              className="rounded-2xl border border-[color:var(--color-steel-200)] bg-white p-7 shadow-[var(--shadow-card)] md:p-10"
+              className="rounded-2xl border border-[color:var(--color-steel-200)] bg-white p-5 shadow-[var(--shadow-card)] md:p-10"
             >
-              <h2 className="font-display text-2xl font-bold text-[color:var(--color-navy-900)]">
+              <h2 className="font-display text-xl font-bold text-[color:var(--color-navy-900)] md:text-2xl">
                 Send us a message
               </h2>
-              <p className="mt-2 text-sm text-slate-500">
+              <p className="mt-1.5 text-xs text-slate-500 md:mt-2 md:text-sm">
                 Required fields marked with *
               </p>
 
-              <div className="mt-8 grid gap-5 md:grid-cols-2">
+              <div className="mt-5 grid gap-4 md:mt-8 md:grid-cols-2 md:gap-5">
                 <Field label="Name *" error={errors.name}>
                   <input
                     type="text"
@@ -139,10 +139,10 @@ function ContactPage() {
                 </Field>
               </div>
 
-              <div className="mt-5">
+              <div className="mt-4 md:mt-5">
                 <Field label="Message *" error={errors.message}>
                   <textarea
-                    rows={6}
+                    rows={4}
                     value={form.message}
                     onChange={update("message")}
                     className={inputCls(!!errors.message)}
@@ -153,9 +153,9 @@ function ContactPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="mt-7 inline-flex items-center gap-2 rounded-xl bg-cta px-7 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-cta px-7 py-3.5 text-sm font-semibold text-white shadow-[var(--shadow-elegant)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 md:mt-7 md:w-auto"
               >
-                {loading ? "Sending..." : "Send Message"}
+                {loading ? "Opening WhatsApp..." : "Send via WhatsApp"}
                 <Send className="h-4 w-4" />
               </button>
             </form>
