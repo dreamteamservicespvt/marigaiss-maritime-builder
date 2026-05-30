@@ -193,48 +193,7 @@ function AboutPage() {
       <section className="bg-[color:var(--color-mist-50)] py-20 md:py-28">
         <div className="container-x">
           <SectionHeading eyebrow="Milestones" title="The Marigaiss timeline." />
-          <div className="relative mt-14">
-            <div className="absolute left-4 top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-[color:var(--color-ocean-500)]/40 to-transparent md:left-1/2" />
-            <div className="space-y-12 md:space-y-20">
-              {TIMELINE.map((t, i) => {
-                const reverse = i % 2 === 1;
-                return (
-                  <Reveal key={t.year} delay={i * 80}>
-                    <div className="relative md:grid md:grid-cols-2 md:items-center md:gap-12">
-                      {/* Image side */}
-                      <div className={`pl-12 md:pl-0 ${reverse ? "md:order-2 md:pl-12" : "md:pr-12"}`}>
-                        <div className="group overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white shadow-[var(--shadow-card)]">
-                          <div className="relative aspect-[16/10] overflow-hidden">
-                            <img
-                              src={t.image}
-                              alt={t.title}
-                              loading="lazy"
-                              className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-tr from-[color:var(--color-navy-900)]/40 via-transparent to-transparent" />
-                            <span className="absolute left-4 top-4 rounded-full bg-[color:var(--color-navy-900)]/85 px-3 py-1 font-mono text-xs font-semibold tracking-widest text-[color:var(--color-cyan-400)]">
-                              {t.year}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      {/* Text side */}
-                      <div className={`mt-5 pl-12 md:mt-0 md:pl-0 ${reverse ? "md:order-1 md:pr-12 md:text-right" : "md:pl-12"}`}>
-                        <span className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--color-ocean-500)]">
-                          {t.year}
-                        </span>
-                        <h3 className="mt-2 font-display text-2xl font-semibold text-[color:var(--color-navy-900)]">
-                          {t.title}
-                        </h3>
-                        <p className="mt-3 text-base leading-relaxed text-slate-600">{t.body}</p>
-                      </div>
-                      <span className="absolute left-2 top-6 h-5 w-5 rounded-full border-4 border-white bg-[color:var(--color-ocean-500)] shadow-[0_0_0_4px_color-mix(in_oklab,var(--color-ocean-500)_25%,transparent)] md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2" />
-                    </div>
-                  </Reveal>
-                );
-              })}
-            </div>
-          </div>
+          <DynamicTimeline />
         </div>
       </section>
 
@@ -250,6 +209,7 @@ function AboutPage() {
               <Reveal key={d.name} delay={i * 120}>
                 <div className="group flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white p-5 shadow-[var(--shadow-card)] sm:flex-row sm:p-6">
                   <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-xl sm:h-44 sm:w-40">
+                  <div className="relative aspect-square w-full shrink-0 overflow-hidden rounded-xl sm:w-44">
                     <img
                       src={d.image}
                       alt={`Portrait of ${d.name}`}
