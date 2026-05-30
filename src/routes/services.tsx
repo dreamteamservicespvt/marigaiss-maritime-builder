@@ -15,6 +15,10 @@ import { CTABand, PageHero, SectionHeading } from "@/components/site/ui";
 import galleryTugboat from "@/assets/gallery-tugboat.jpg";
 import galleryCrane from "@/assets/gallery-crane.jpg";
 import galleryPropeller from "@/assets/gallery-propeller.jpg";
+import processConsult from "@/assets/process-consult.jpg";
+import processSpecify from "@/assets/process-specify.jpg";
+import processDeliver from "@/assets/process-deliver.jpg";
+import processSupport from "@/assets/process-support.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -83,10 +87,10 @@ const SERVICES: Service[] = [
 ];
 
 const PROCESS = [
-  { icon: HeartHandshake, title: "Consult", body: "Understand the job and the operating constraints." },
-  { icon: Wrench, title: "Specify", body: "Engineer the spec — AutoCAD drawings where they help." },
-  { icon: PackageCheck, title: "Supply / Rent", body: "Deliver equipment or mobilise rental assets." },
-  { icon: HeartHandshake, title: "Support", body: "Stay on call through commissioning and operations." },
+  { icon: HeartHandshake, title: "Consult", body: "Understand the job and the operating constraints.", image: processConsult },
+  { icon: Wrench, title: "Specify", body: "Engineer the spec — AutoCAD drawings where they help.", image: processSpecify },
+  { icon: PackageCheck, title: "Supply / Rent", body: "Deliver equipment or mobilise rental assets.", image: processDeliver },
+  { icon: HeartHandshake, title: "Support", body: "Stay on call through commissioning and operations.", image: processSupport },
 ];
 
 function ServicesPage() {
@@ -167,18 +171,31 @@ function ServicesPage() {
             eyebrow="How we work"
             title="Four steps from brief to handover."
           />
-          <div className="mt-14 grid gap-6 md:grid-cols-4">
+          <div className="mt-14 grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((p, i) => (
-              <Reveal key={p.title} delay={i * 80}>
-                <div className="relative rounded-2xl border border-[color:var(--color-steel-200)] bg-white p-6">
-                  <span className="font-mono text-xs text-[color:var(--color-ocean-500)]">
-                    0{i + 1}
-                  </span>
-                  <p.icon className="mt-3 h-7 w-7 text-[color:var(--color-navy-900)]" />
-                  <h3 className="mt-4 font-display text-lg font-semibold text-[color:var(--color-navy-900)]">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-slate-600">{p.body}</p>
+              <Reveal key={p.title + i} delay={i * 80} className="h-full">
+                <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white shadow-[var(--shadow-card)] transition hover:-translate-y-1">
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-navy-900)]/70 to-transparent" />
+                    <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1 font-mono text-[10px] font-bold tracking-widest text-[color:var(--color-ocean-500)]">
+                      STEP 0{i + 1}
+                    </span>
+                    <span className="absolute bottom-4 left-4 flex h-11 w-11 items-center justify-center rounded-xl bg-cta text-white shadow-[var(--shadow-elegant)]">
+                      <p.icon className="h-5 w-5" />
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="font-display text-lg font-semibold text-[color:var(--color-navy-900)]">
+                      {p.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{p.body}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}

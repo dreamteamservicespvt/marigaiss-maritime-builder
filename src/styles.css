@@ -138,6 +138,26 @@
     html { scroll-behavior: auto; }
   }
 
+  /* Logo marquee — infinite horizontal scroll */
+  .logo-marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+  .logo-marquee__track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    animation: logo-marquee-scroll 30s linear infinite;
+  }
+  .logo-marquee:hover .logo-marquee__track { animation-play-state: paused; }
+  @keyframes logo-marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-marquee__track { animation: none; }
+  }
+
   .duotone-navy {
     position: relative;
   }
