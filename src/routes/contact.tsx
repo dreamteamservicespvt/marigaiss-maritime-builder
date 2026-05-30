@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero, SectionHeading } from "@/components/site/ui";
+import { buildQuoteMessage, openWhatsApp } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -63,11 +64,11 @@ function ContactPage() {
     }
     setErrors({});
     setLoading(true);
-    // TODO: Wire this to an email service / endpoint (e.g. resend, formspree)
-    await new Promise((r) => setTimeout(r, 900));
+    // Hand off the enquiry to our WhatsApp Business line.
+    const message = buildQuoteMessage(parsed.data);
+    openWhatsApp(message);
     setLoading(false);
-    toast.success("Thanks — we'll be in touch within 1 business day.");
-    setForm({ name: "", email: "", phone: "", service: "", message: "" });
+    toast.success("Opening WhatsApp to send your enquiry…");
   };
 
   return (

@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Anchor, ArrowRight, Mail, Menu, Phone, X } from "lucide-react";
+import { whatsappQuoteUrl } from "@/lib/whatsapp";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -37,11 +38,12 @@ export function Header() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         onHero
           ? "bg-transparent"
-          : "bg-[color:var(--color-navy-900)]/95 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.05)]"
+          : "bg-[color:var(--color-navy-900)]/95 shadow-[0_1px_0_rgba(255,255,255,0.05)]"
       }`}
     >
       <div className="container-x flex h-18 items-center justify-between py-4">
@@ -81,12 +83,14 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Link
-            to="/contact"
+          <a
+            href={whatsappQuoteUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-xl bg-cta px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-elegant)] transition hover:opacity-95 hover:-translate-y-0.5"
           >
             Get a Quote
-          </Link>
+          </a>
         </div>
 
         <button
@@ -99,10 +103,13 @@ export function Header() {
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
+    </header>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — rendered as sibling of <header> so that no ancestor
+          backdrop-filter / transform creates a containing block that would
+          break `position: fixed` on inner pages. */}
       <div
-        className={`fixed inset-0 top-[72px] z-40 origin-top bg-[color:var(--color-navy-900)] transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 top-[72px] z-[60] origin-top bg-[color:var(--color-navy-900)] transition-opacity duration-300 lg:hidden ${
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden={!open}
@@ -142,13 +149,16 @@ export function Header() {
               })}
             </nav>
 
-            <Link
-              to="/contact"
+            <a
+              href={whatsappQuoteUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
               className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-cta px-5 py-4 text-base font-semibold text-white shadow-[var(--shadow-elegant)]"
             >
               Get a Quote
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </a>
 
             <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
               <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[color:var(--color-cyan-400)]">
@@ -172,6 +182,6 @@ export function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }
