@@ -12,6 +12,9 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { CTABand, PageHero, SectionHeading } from "@/components/site/ui";
+import galleryTugboat from "@/assets/gallery-tugboat.jpg";
+import galleryCrane from "@/assets/gallery-crane.jpg";
+import galleryPropeller from "@/assets/gallery-propeller.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -48,7 +51,7 @@ const SERVICES: Service[] = [
     body:
       "Specification, sourcing and supply of marine equipment for operators that need reliable, ready-to-run hardware.",
     items: ["Boat propellers", "Passenger ferries", "Marine fittings & accessories"],
-    image: "/src/assets/gallery-propeller.jpg",
+    image: galleryPropeller,
   },
   {
     id: "rental",
@@ -57,7 +60,7 @@ const SERVICES: Service[] = [
     body:
       "A versatile rental fleet for port operations, infrastructure work and marine logistics — on call when you need it.",
     items: ["Tug services", "Barge services", "Dumb-barge setups"],
-    image: "/src/assets/gallery-tugboat.jpg",
+    image: galleryTugboat,
   },
   {
     id: "cranes",
@@ -66,7 +69,7 @@ const SERVICES: Service[] = [
     body:
       "Heavy lifting solutions matched to your site — from standard industrial cranes to specialised derrick configurations.",
     items: ["Standard industrial cranes", "Derrick cranes", "Lifting consultation"],
-    image: "/src/assets/gallery-crane.jpg",
+    image: galleryCrane,
   },
   {
     id: "handling",
