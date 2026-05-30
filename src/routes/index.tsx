@@ -10,7 +10,10 @@ import {
   ArrowRight,
   Container,
   CheckCircle2,
+  Plus,
+  Minus,
 } from "lucide-react";
+import { useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { CTABand, SectionHeading, StatCountUp } from "@/components/site/ui";
 import galleryTugboat from "@/assets/gallery-tugboat.jpg";
@@ -65,6 +68,36 @@ const SERVICES = [
     title: "Material Handling",
     desc: "Straddle carriers (platters) and precision machined components.",
     image: galleryFerry,
+  },
+];
+
+const WHY = [
+  { icon: Anchor, title: "Marine engineering expertise", body: "Specification, sourcing and supply led by a qualified marine engineer.", image: capabilityEngineering },
+  { icon: Truck, title: "Rental fleet & heavy lifting", body: "Tugs, barges and cranes ready to deploy for the work ahead.", image: galleryTugboat },
+  { icon: Wrench, title: "Precision machined components", body: "Built-to-spec parts where tolerance and reliability matter.", image: galleryPropeller },
+  { icon: ShieldCheck, title: "Founder-led delivery", body: "Direct accountability from first call to final handover.", image: capabilityShipbuilding },
+];
+
+const FAQS = [
+  {
+    q: "What services does Marigaiss India offer?",
+    a: "We supply marine equipment (propellers, ferries, fittings), rent tugs, barges and dumb-barge setups, deliver industrial and derrick cranes, and machine precision components for maritime and industrial clients.",
+  },
+  {
+    q: "Where are you located and do you serve outside Kakinada?",
+    a: "Our office is on Cinema Road, Kakinada, Andhra Pradesh. We deliver and mobilise rental assets across India, with our core operating radius along the east coast.",
+  },
+  {
+    q: "How quickly can you mobilise rental equipment?",
+    a: "Most rental jobs are mobilised within a few working days. Share your site, scope and timeline and we'll come back with a confirmed window within one business day.",
+  },
+  {
+    q: "Can you supply built-to-spec machined components?",
+    a: "Yes — share your drawings or requirements and we will specify, machine and deliver components against your tolerance and material requirements.",
+  },
+  {
+    q: "How do I request a quote?",
+    a: "Use the Get a Quote button to chat with us on WhatsApp, or fill the Contact form. We typically respond within one business day.",
   },
 ];
 
