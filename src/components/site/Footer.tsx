@@ -5,7 +5,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-[color:var(--color-navy-900)] text-[color:var(--color-steel-200)]">
-      <div className="container-x grid gap-8 py-10 md:grid-cols-2 md:gap-12 md:py-16 lg:grid-cols-4">
+      <div className="container-x grid grid-cols-2 gap-6 py-10 md:gap-12 md:py-16 lg:grid-cols-4">
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-3 text-white">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-cta md:h-10 md:w-10">
