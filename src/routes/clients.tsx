@@ -11,6 +11,10 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { CTABand, PageHero, SectionHeading } from "@/components/site/ui";
+import galleryTugboat from "@/assets/gallery-tugboat.jpg";
+import galleryCrane from "@/assets/gallery-crane.jpg";
+import galleryFerry from "@/assets/gallery-ferry.jpg";
+import galleryPropeller from "@/assets/gallery-propeller.jpg";
 
 export const Route = createFileRoute("/clients")({
   head: () => ({
@@ -41,12 +45,12 @@ const INDUSTRIES = [
 
 type Cat = "All" | "Marine" | "Rental" | "Cranes" | "Handling";
 const GALLERY: { src: string; caption: string; cat: Exclude<Cat, "All"> }[] = [
-  { src: "https://images.unsplash.com/photo-1568430462989-44163eb1752f?auto=format&fit=crop&w=1200&q=80", caption: "Passenger ferry operations", cat: "Marine" },
-  { src: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1200&q=80", caption: "Tug & barge support", cat: "Rental" },
-  { src: "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=1200&q=80", caption: "Industrial crane installation", cat: "Cranes" },
-  { src: "https://images.unsplash.com/photo-1577080447571-ce5379c39c47?auto=format&fit=crop&w=1200&q=80", caption: "Container & material handling", cat: "Handling" },
-  { src: "https://images.unsplash.com/photo-1565017228812-ab07a4d99c46?auto=format&fit=crop&w=1200&q=80", caption: "Marine equipment supply", cat: "Marine" },
-  { src: "https://images.unsplash.com/photo-1518176258769-f227c798150e?auto=format&fit=crop&w=1200&q=80", caption: "Derrick crane operations", cat: "Cranes" },
+  { src: galleryFerry, caption: "Passenger ferry operations", cat: "Marine" },
+  { src: galleryTugboat, caption: "Tug & barge support", cat: "Rental" },
+  { src: galleryCrane, caption: "Industrial crane installation", cat: "Cranes" },
+  { src: "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=1200&q=80", caption: "Container & material handling", cat: "Handling" },
+  { src: galleryPropeller, caption: "Marine equipment supply", cat: "Marine" },
+  { src: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1200&q=80", caption: "Derrick crane operations", cat: "Cranes" },
 ];
 
 const TESTIMONIALS = [
@@ -82,7 +86,7 @@ function ClientsPage() {
         eyebrow="Industries & clients"
         title="Industries & Clients We Serve"
         subtitle="The operators and project teams we partner with — across maritime, infrastructure and industrial sectors."
-        image="https://images.unsplash.com/photo-1518176258769-f227c798150e?auto=format&fit=crop&w=2000&q=80"
+        image="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=2000&q=80"
       />
 
       {/* INDUSTRIES */}

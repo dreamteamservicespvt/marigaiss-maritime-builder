@@ -13,6 +13,10 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { CTABand, SectionHeading, StatCountUp } from "@/components/site/ui";
+import galleryTugboat from "@/assets/gallery-tugboat.jpg";
+import galleryCrane from "@/assets/gallery-crane.jpg";
+import galleryFerry from "@/assets/gallery-ferry.jpg";
+import galleryPropeller from "@/assets/gallery-propeller.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -68,9 +72,9 @@ const CAPABILITIES = [
 ];
 
 const GALLERY = [
-  "https://images.unsplash.com/photo-1577080447571-ce5379c39c47?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1565017228812-ab07a4d99c46?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=1200&q=80",
+  { src: galleryCrane, alt: "Industrial port crane lifting cargo" },
+  { src: galleryTugboat, alt: "Harbour tugboat in operation" },
+  { src: galleryPropeller, alt: "Precision marine propeller component" },
 ];
 
 function HomePage() {
@@ -80,8 +84,8 @@ function HomePage() {
       <section className="relative isolate min-h-[100svh] overflow-hidden bg-hero">
         <div className="absolute inset-0 -z-10">
           <img
-            src="https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=2000&q=80"
-            alt="Cargo port at dusk with cranes and ships"
+            src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=2000&q=80"
+            alt="Aerial view of a container port with cranes"
             className="h-full w-full object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-navy-900)]/85 via-[color:var(--color-navy-800)]/70 to-[color:var(--color-ocean-600)]/60" />
@@ -89,15 +93,18 @@ function HomePage() {
 
         <div className="container-x flex min-h-[100svh] flex-col justify-center pt-28 pb-24">
           <Reveal>
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--color-cyan-400)] backdrop-blur">
-              <Waves className="h-3.5 w-3.5" />
-              Marine Engineering · Since 2019
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[color:var(--color-cyan-400)]/30 bg-[color:var(--color-cyan-400)]/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[color:var(--color-cyan-400)] backdrop-blur-md shadow-[0_0_24px_-8px_rgba(34,184,207,0.5)] sm:px-4 sm:text-xs sm:tracking-[0.2em]">
+              <span className="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-[color:var(--color-cyan-400)]" />
+              <Waves className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+              <span>Marine Engineering</span>
+              <span className="h-3 w-px bg-[color:var(--color-cyan-400)]/40" />
+              <span>Since 2019</span>
             </p>
           </Reveal>
           <Reveal delay={120}>
             <h1
               className="max-w-5xl text-balance font-display font-bold text-white"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
+              style={{ fontSize: "clamp(2rem, 6vw, 4.5rem)" }}
             >
               Engineering the{" "}
               <span className="bg-gradient-to-r from-[color:var(--color-cyan-400)] to-white bg-clip-text text-transparent">
@@ -107,7 +114,7 @@ function HomePage() {
             </h1>
           </Reveal>
           <Reveal delay={220}>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--color-steel-200)] md:text-xl">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-steel-200)] md:text-xl">
               Marigaiss India supplies, rents and engineers maritime and heavy-machinery
               solutions — propellers, ferries, tugs, barges, cranes and machined components,
               trusted by industry from Kakinada outward.
@@ -187,8 +194,8 @@ function HomePage() {
           <Reveal delay={150} className="relative">
             <div className="overflow-hidden rounded-2xl shadow-[var(--shadow-elegant)]">
               <img
-                src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1400&q=80"
-                alt="Tugboat in harbour"
+                src={galleryTugboat}
+                alt="Harbour tugboat at work"
                 className="aspect-[4/5] w-full object-cover"
                 loading="lazy"
               />
@@ -305,16 +312,16 @@ function HomePage() {
             subtitle="From port operations to industrial sites — the environments where our equipment and engineering earn their keep."
           />
           <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {GALLERY.map((src, i) => (
-              <Reveal key={src} delay={i * 100}>
+            {GALLERY.map((g, i) => (
+              <Reveal key={g.src} delay={i * 100}>
                 <Link
                   to="/clients"
                   className="group block overflow-hidden rounded-2xl bg-[color:var(--color-navy-900)]"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img
-                      src={src}
-                      alt="Maritime operations"
+                      src={g.src}
+                      alt={g.alt}
                       loading="lazy"
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     />

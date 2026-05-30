@@ -12,6 +12,9 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { CTABand, PageHero, SectionHeading } from "@/components/site/ui";
+import galleryTugboat from "@/assets/gallery-tugboat.jpg";
+import galleryCrane from "@/assets/gallery-crane.jpg";
+import galleryPropeller from "@/assets/gallery-propeller.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -48,8 +51,7 @@ const SERVICES: Service[] = [
     body:
       "Specification, sourcing and supply of marine equipment for operators that need reliable, ready-to-run hardware.",
     items: ["Boat propellers", "Passenger ferries", "Marine fittings & accessories"],
-    image:
-      "https://images.unsplash.com/photo-1568430462989-44163eb1752f?auto=format&fit=crop&w=1400&q=80",
+    image: galleryPropeller,
   },
   {
     id: "rental",
@@ -58,8 +60,7 @@ const SERVICES: Service[] = [
     body:
       "A versatile rental fleet for port operations, infrastructure work and marine logistics — on call when you need it.",
     items: ["Tug services", "Barge services", "Dumb-barge setups"],
-    image:
-      "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1400&q=80",
+    image: galleryTugboat,
   },
   {
     id: "cranes",
@@ -68,8 +69,7 @@ const SERVICES: Service[] = [
     body:
       "Heavy lifting solutions matched to your site — from standard industrial cranes to specialised derrick configurations.",
     items: ["Standard industrial cranes", "Derrick cranes", "Lifting consultation"],
-    image:
-      "https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=1400&q=80",
+    image: galleryCrane,
   },
   {
     id: "handling",
@@ -78,8 +78,7 @@ const SERVICES: Service[] = [
     body:
       "Straddle carriers and built-to-spec machined components for yards, ports and industrial operations.",
     items: ["Straddle carriers (platters)", "Precision machined components", "Custom fabrication"],
-    image:
-      "https://images.unsplash.com/photo-1577080447571-ce5379c39c47?auto=format&fit=crop&w=1400&q=80",
+    image: "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=1400&q=80",
   },
 ];
 

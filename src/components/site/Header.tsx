@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Anchor, Menu, X } from "lucide-react";
+import { Anchor, ArrowRight, Mail, Menu, Phone, X } from "lucide-react";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -24,6 +24,17 @@ export function Header() {
   }, []);
 
   useEffect(() => setOpen(false), [location.pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [open]);
 
   return (
     <header
@@ -91,26 +102,74 @@ export function Header() {
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-0 top-[72px] z-40 origin-top bg-[color:var(--color-navy-900)] transition-all lg:hidden ${
+        className={`fixed inset-0 top-[72px] z-40 origin-top bg-[color:var(--color-navy-900)] transition-opacity duration-300 lg:hidden ${
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
+        aria-hidden={!open}
       >
-        <div className="container-x flex flex-col gap-2 pt-8 pb-12">
-          {NAV.map((item) => (
+        {/* Solid backdrop layer — guarantees opacity regardless of stacking */}
+        <div className="absolute inset-0 bg-[color:var(--color-navy-900)]" aria-hidden />
+        <div
+          className="relative h-full overflow-y-auto bg-gradient-to-b from-[color:var(--color-navy-900)] via-[color:var(--color-navy-800)] to-[color:var(--color-navy-900)]"
+        >
+          <div className="container-x flex flex-col pt-6 pb-10">
+            <p className="px-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-[color:var(--color-cyan-400)]">
+              Menu
+            </p>
+            <nav className="mt-4 flex flex-col">
+              {NAV.map((item, idx) => {
+                const active =
+                  item.to === "/"
+                    ? location.pathname === "/"
+                    : location.pathname.startsWith(item.to);
+                return (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className={`group flex items-center justify-between border-b border-white/5 px-2 py-4 font-display text-xl font-semibold transition ${
+                      active ? "text-[color:var(--color-cyan-400)]" : "text-white"
+                    }`}
+                  >
+                    <span className="flex items-center gap-3">
+                      <span className="font-mono text-[10px] tabular-nums text-[color:var(--color-steel-300)]">
+                        0{idx + 1}
+                      </span>
+                      {item.label}
+                    </span>
+                    <ArrowRight className="h-4 w-4 text-[color:var(--color-steel-300)] transition group-hover:translate-x-1 group-hover:text-[color:var(--color-cyan-400)]" />
+                  </Link>
+                );
+              })}
+            </nav>
+
             <Link
-              key={item.to}
-              to={item.to}
-              className="rounded-xl px-4 py-4 text-2xl font-display font-semibold text-white hover:bg-white/5"
+              to="/contact"
+              className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-cta px-5 py-4 text-base font-semibold text-white shadow-[var(--shadow-elegant)]"
             >
-              {item.label}
+              Get a Quote
+              <ArrowRight className="h-4 w-4" />
             </Link>
-          ))}
-          <Link
-            to="/contact"
-            className="mt-4 inline-flex items-center justify-center rounded-xl bg-cta px-5 py-4 text-base font-semibold text-white"
-          >
-            Get a Quote
-          </Link>
+
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[color:var(--color-cyan-400)]">
+                Reach us directly
+              </p>
+              <a
+                href="mailto:marigaissindia@gmail.com"
+                className="mt-3 flex items-center gap-3 text-sm text-white"
+              >
+                <Mail className="h-4 w-4 text-[color:var(--color-cyan-400)]" />
+                marigaissindia@gmail.com
+              </a>
+              <a
+                href="tel:+91"
+                className="mt-2 flex items-center gap-3 text-sm text-[color:var(--color-steel-200)]"
+              >
+                <Phone className="h-4 w-4 text-[color:var(--color-cyan-400)]" />
+                Kakinada, Andhra Pradesh
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </header>
