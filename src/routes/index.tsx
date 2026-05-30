@@ -504,3 +504,58 @@ function HomePage() {
     </>
   );
 }
+
+function FAQList() {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <div className="space-y-3">
+      {FAQS.map((f, i) => {
+        const isOpen = open === i;
+        return (
+          <div
+            key={f.q}
+            className={`overflow-hidden rounded-2xl border bg-white transition ${
+              isOpen
+                ? "border-[color:var(--color-ocean-500)] shadow-[var(--shadow-card)]"
+                : "border-[color:var(--color-steel-200)] hover:border-[color:var(--color-ocean-500)]/40"
+            }`}
+          >
+            <button
+              type="button"
+              onClick={() => setOpen(isOpen ? null : i)}
+              aria-expanded={isOpen}
+              className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-7"
+            >
+              <span className="flex items-center gap-4">
+                <span className="hidden font-mono text-xs tabular-nums text-[color:var(--color-ocean-500)] sm:inline">
+                  0{i + 1}
+                </span>
+                <span className="font-display text-base font-semibold text-[color:var(--color-navy-900)] md:text-lg">
+                  {f.q}
+                </span>
+              </span>
+              <span
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white transition ${
+                  isOpen ? "bg-[color:var(--color-ocean-500)] rotate-0" : "bg-[color:var(--color-navy-900)]"
+                }`}
+              >
+                {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+              </span>
+            </button>
+            <div
+              className={`grid transition-all duration-300 ease-out ${
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <p className="px-5 pb-6 text-sm leading-relaxed text-slate-600 md:px-7 md:text-base">
+                  {f.a}
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
