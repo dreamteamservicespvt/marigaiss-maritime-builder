@@ -1,0 +1,151 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  Outlet,
+  Link,
+  createRootRouteWithContext,
+  useRouter,
+  HeadContent,
+  Scripts,
+} from "@tanstack/react-router";
+import { useEffect, type ReactNode } from "react";
+
+import appCss from "../styles.css?url";
+import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Header } from "../components/site/Header";
+import { Footer } from "../components/site/Footer";
+import { BackToTop } from "../components/site/ui";
+import { Toaster } from "../components/ui/sonner";
+
+function NotFoundComponent() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-hero px-4">
+      <div className="max-w-md text-center text-white">
+        <h1 className="font-display text-7xl font-bold">404</h1>
+        <h2 className="mt-4 text-xl font-semibold">Page not found</h2>
+        <p className="mt-2 text-sm text-[color:var(--color-steel-200)]">
+          The page you're looking for doesn't exist or has been moved.
+        </p>
+        <div className="mt-6">
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center rounded-xl bg-cta px-5 py-3 text-sm font-semibold text-white"
+          >
+            Go home
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+  console.error(error);
+  const router = useRouter();
+  useEffect(() => {
+    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+  }, [error]);
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="max-w-md text-center">
+        <h1 className="text-xl font-semibold tracking-tight text-foreground">
+          This page didn't load
+        </h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Something went wrong on our end. You can try refreshing or head back home.
+        </p>
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
+          <button
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+          >
+            Try again
+          </button>
+          <a
+            href="/"
+            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground"
+          >
+            Go home
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "Marigaiss India — Engineering the Maritime Edge" },
+      {
+        name: "description",
+        content:
+          "Marigaiss India Pvt. Ltd. — marine equipment supply, tug & barge rental, industrial cranes and precision machined components from Kakinada.",
+      },
+      { name: "author", content: "Marigaiss India Private Limited" },
+      { property: "og:title", content: "Marigaiss India — Engineering the Maritime Edge" },
+      {
+        property: "og:description",
+        content:
+          "Marine equipment, heavy-machinery rental and machined components — trusted delivery from Kakinada, India.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Marigaiss India" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "theme-color", content: "#0a1a2f" },
+    ],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap",
+      },
+      {
+        rel: "icon",
+        href:
+          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231565a6'/%3E%3Cpath d='M16 7v18M9 13c0 4 3 7 7 7s7-3 7-7M11 9a2 2 0 1 0 0 .01M16 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0z' stroke='white' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
+      },
+    ],
+  }),
+  shellComponent: RootShell,
+  component: RootComponent,
+  notFoundComponent: NotFoundComponent,
+  errorComponent: ErrorComponent,
+});
+
+function RootShell({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+function RootComponent() {
+  const { queryClient } = Route.useRouteContext();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Header />
+      <main className="min-h-screen">
+        <Outlet />
+      </main>
+      <Footer />
+      <BackToTop />
+      <Toaster richColors position="top-right" />
+    </QueryClientProvider>
+  );
+}
