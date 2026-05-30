@@ -242,3 +242,85 @@ function AboutPage() {
     </>
   );
 }
+
+function DynamicTimeline() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // 0 when the top hits viewport center, 1 when the bottom hits viewport center.
+      const total = rect.height;
+      const passed = Math.min(total, Math.max(0, vh * 0.6 - rect.top));
+      setProgress(total === 0 ? 0 : Math.min(1, passed / total));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative mt-14">
+      {/* Track */}
+      <div className="absolute left-4 top-0 bottom-0 w-px bg-[color:var(--color-steel-200)] md:left-1/2" />
+      {/* Progress fill */}
+      <div
+        className="absolute left-4 top-0 w-px origin-top bg-gradient-to-b from-[color:var(--color-cyan-400)] via-[color:var(--color-ocean-500)] to-[color:var(--color-cyan-400)] md:left-1/2"
+        style={{ height: `${progress * 100}%`, transition: "height 100ms linear" }}
+      />
+      <div className="space-y-12 md:space-y-20">
+        {TIMELINE.map((t, i) => {
+          const reverse = i % 2 === 1;
+          const threshold = (i + 0.5) / TIMELINE.length;
+          const reached = progress >= threshold;
+          return (
+            <Reveal key={t.year} delay={i * 80}>
+              <div className="relative md:grid md:grid-cols-2 md:items-center md:gap-12">
+                <div className={`pl-12 md:pl-0 ${reverse ? "md:order-2 md:pl-12" : "md:pr-12"}`}>
+                  <div className="group overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white shadow-[var(--shadow-card)]">
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <img
+                        src={t.image}
+                        alt={t.title}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-tr from-[color:var(--color-navy-900)]/40 via-transparent to-transparent" />
+                      <span className="absolute left-4 top-4 rounded-full bg-[color:var(--color-navy-900)]/85 px-3 py-1 font-mono text-xs font-semibold tracking-widest text-[color:var(--color-cyan-400)]">
+                        {t.year}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className={`mt-5 pl-12 md:mt-0 md:pl-0 ${reverse ? "md:order-1 md:pr-12 md:text-right" : "md:pl-12"}`}>
+                  <span className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--color-ocean-500)]">
+                    {t.year}
+                  </span>
+                  <h3 className="mt-2 font-display text-2xl font-semibold text-[color:var(--color-navy-900)]">
+                    {t.title}
+                  </h3>
+                  <p className="mt-3 text-base leading-relaxed text-slate-600">{t.body}</p>
+                </div>
+                <span
+                  className={`absolute left-2 top-6 h-5 w-5 rounded-full border-4 border-white transition-colors duration-300 md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 ${
+                    reached
+                      ? "bg-[color:var(--color-cyan-400)] shadow-[0_0_0_6px_color-mix(in_oklab,var(--color-cyan-400)_25%,transparent)]"
+                      : "bg-[color:var(--color-steel-200)]"
+                  }`}
+                />
+              </div>
+            </Reveal>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
