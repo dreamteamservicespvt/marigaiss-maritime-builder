@@ -40,10 +40,10 @@ export function Header() {
   return (
     <>
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[var(--ease-out-expo)] ${
         onHero
           ? "bg-transparent"
-          : "bg-[color:var(--color-navy-900)]/95 shadow-[0_1px_0_rgba(255,255,255,0.05)]"
+          : "border-b border-white/10 bg-[color:var(--color-navy-900)]/70 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.5)]"
       }`}
     >
       <div className="container-x flex h-18 items-center justify-between py-4">

@@ -56,6 +56,25 @@
 
   --gradient-hero: linear-gradient(135deg, #0a1a2f 0%, #0f2c4d 55%, #114f85 100%);
   --gradient-cta: linear-gradient(135deg, #1565a6 0%, #22b8cf 100%);
+
+  /* Premium additions */
+  --shadow-1: 0 1px 2px rgba(10,26,47,0.06), 0 1px 1px rgba(10,26,47,0.04);
+  --shadow-2: 0 8px 24px -12px rgba(10,26,47,0.18), 0 2px 6px -2px rgba(10,26,47,0.08);
+  --shadow-3: 0 30px 60px -30px rgba(10,26,47,0.45), 0 12px 30px -15px rgba(10,26,47,0.18);
+  --shadow-glow: 0 0 0 1px color-mix(in oklab, #22b8cf 25%, transparent), 0 12px 40px -10px color-mix(in oklab, #22b8cf 45%, transparent);
+  --ring-brand: 0 0 0 3px color-mix(in oklab, #22b8cf 40%, transparent);
+
+  --gradient-mesh: radial-gradient(60% 80% at 20% 10%, color-mix(in oklab, #22b8cf 25%, transparent) 0%, transparent 60%),
+                   radial-gradient(50% 60% at 80% 30%, color-mix(in oklab, #1565a6 35%, transparent) 0%, transparent 65%),
+                   radial-gradient(70% 70% at 50% 100%, color-mix(in oklab, #0a1a2f 80%, transparent) 0%, transparent 70%);
+  --gradient-aurora: conic-gradient(from 180deg at 50% 50%, #0a1a2f, #114f85, #22b8cf, #1565a6, #0a1a2f);
+  --gradient-sheen: linear-gradient(110deg, transparent 25%, rgba(255,255,255,0.22) 50%, transparent 75%);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 600ms;
 }
 
 :root {
@@ -106,6 +125,15 @@
     font-family: var(--font-display);
     letter-spacing: -0.02em;
     line-height: 1.1;
+  }
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--ring-brand);
+    border-radius: 6px;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--color-cyan-400) 35%, transparent);
+    color: var(--color-navy-900);
   }
 }
 
@@ -162,5 +190,68 @@
     inset: 0;
     background: linear-gradient(135deg, rgba(10,26,47,0.75), rgba(21,101,166,0.55));
     pointer-events: none;
+  }
+
+  /* Subtle SVG grain — premium texture for dark sections */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .bg-mesh { background-image: var(--gradient-mesh); }
+
+  /* Glassmorphic surface */
+  .glass {
+    background: color-mix(in oklab, var(--color-navy-900) 55%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid color-mix(in oklab, white 12%, transparent);
+  }
+
+  /* Animated sheen utility for buttons / cards */
+  .sheen { position: relative; overflow: hidden; isolation: isolate; }
+  .sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-sheen);
+    transform: translateX(-120%);
+    transition: transform 700ms var(--ease-out-expo);
+    pointer-events: none;
+  }
+  .sheen:hover::after { transform: translateX(120%); }
+
+  /* Animated underline link */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 350ms var(--ease-out-expo);
+  }
+  .link-underline:hover { background-size: 100% 1px; }
+
+  /* Slow spin for decorative auras */
+  @keyframes auroraSpin { to { transform: rotate(360deg); } }
+  .animate-aurora { animation: auroraSpin 18s linear infinite; }
+
+  /* Soft float for badges */
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .animate-float { animation: floatY 6s ease-in-out infinite; }
+
+  /* Route transition */
+  @keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  .page-enter { animation: pageFadeIn 500ms var(--ease-out-expo) both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-aurora, .animate-float, .page-enter, .sheen::after { animation: none !important; transition: none !important; }
   }
 }
