@@ -22,6 +22,8 @@ import galleryFerry from "@/assets/gallery-ferry.jpg";
 import galleryPropeller from "@/assets/gallery-propeller.jpg";
 import capabilityEngineering from "@/assets/capability-engineering.jpg";
 import capabilityShipbuilding from "@/assets/capability-shipbuilding.jpg";
+import { AutoScroller } from "@/components/site/AutoScroller";
+import { CapabilityCarousel } from "@/components/site/CapabilityCarousel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -268,9 +270,13 @@ function HomePage() {
           />
           {/* Mobile: horizontal auto-scroll (right → left) */}
           <div className="mt-12 sm:hidden">
-            <div className="card-marquee -mx-5 px-5">
-              <div className="card-marquee__track">
-                {[...SERVICES, ...SERVICES].map((s, i) => (
+            <AutoScroller
+              direction="left"
+              speed={45}
+              className="card-marquee -mx-5 px-5"
+              trackClassName="gap-4"
+            >
+              {[...SERVICES, ...SERVICES].map((s, i) => (
                   <Link
                     key={s.title + i}
                     to="/services"
@@ -288,9 +294,8 @@ function HomePage() {
                       <p className="mt-2 flex-1 text-xs leading-relaxed text-slate-600">{s.desc}</p>
                     </div>
                   </Link>
-                ))}
-              </div>
-            </div>
+              ))}
+            </AutoScroller>
           </div>
           {/* Desktop / tablet: grid */}
           <div className="mt-14 hidden auto-rows-fr gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-4">
@@ -338,9 +343,13 @@ function HomePage() {
           />
           {/* Mobile: horizontal auto-scroll (left → right) */}
           <div className="mt-12 sm:hidden">
-            <div className="card-marquee card-marquee--ltr -mx-5 px-5">
-              <div className="card-marquee__track">
-                {[...WHY, ...WHY].map((f, i) => (
+            <AutoScroller
+              direction="right"
+              speed={45}
+              className="card-marquee -mx-5 px-5"
+              trackClassName="gap-4"
+            >
+              {[...WHY, ...WHY].map((f, i) => (
                   <div
                     key={f.title + i}
                     className="relative flex w-[78vw] max-w-[19rem] shrink-0 flex-col overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white"
@@ -357,9 +366,8 @@ function HomePage() {
                       <p className="mt-2 flex-1 text-xs leading-relaxed text-slate-600">{f.body}</p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+              ))}
+            </AutoScroller>
           </div>
           {/* Desktop / tablet: image cards grid */}
           <div className="mt-14 hidden auto-rows-fr gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-4">
@@ -408,34 +416,7 @@ function HomePage() {
             subtitle="Six interlocking strengths that take a marine project from first sketch to commissioned delivery."
             light
           />
-          {/* 3D auto-scrolling capability carousel */}
-          <div className="cap-stage mt-14 py-6">
-            <div className="cap-track">
-              {[...CAPABILITIES, ...CAPABILITIES].map((c, i) => (
-                <div
-                  key={c.name + i}
-                  className="cap-card group relative w-[78vw] max-w-[22rem] shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <img
-                      src={c.image}
-                      alt={c.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover opacity-90"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-navy-900)] via-[color:var(--color-navy-900)]/40 to-transparent" />
-                    <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-[color:var(--color-cyan-400)]/40 bg-[color:var(--color-navy-900)]/70 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-cyan-400)] backdrop-blur">
-                      0{(i % CAPABILITIES.length) + 1}
-                    </span>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-display text-lg font-semibold text-white">{c.name}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[color:var(--color-steel-200)]">{c.blurb}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <CapabilityCarousel items={CAPABILITIES} />
         </div>
       </section>
 
