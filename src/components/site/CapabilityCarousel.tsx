@@ -42,7 +42,7 @@ export function CapabilityCarousel({ items }: { items: CapabilityItem[] }) {
       }}
     >
       <div
-        className="relative mx-auto h-[24rem] sm:h-[26rem] md:h-[30rem]"
+        className="relative mx-auto h-[24rem] sm:h-[28rem] md:h-[34rem] lg:h-[38rem]"
         style={{ perspective: "1600px" }}
       >
         {items.map((c, i) => {
@@ -51,7 +51,7 @@ export function CapabilityCarousel({ items }: { items: CapabilityItem[] }) {
           if (offset < -n / 2) offset += n;
           const abs = Math.abs(offset);
           const visible = abs <= 2;
-          const translateX = offset * 38; // % of card width
+          const translateX = offset * 42; // % of card width
           const rotateY = offset * -22;
           const translateZ = -abs * 160;
           const scale = abs === 0 ? 1 : Math.max(0.7, 0.88 - abs * 0.08);
@@ -66,7 +66,7 @@ export function CapabilityCarousel({ items }: { items: CapabilityItem[] }) {
               aria-current={active === i}
               onClick={() => setActive(i)}
               tabIndex={visible ? 0 : -1}
-              className={`absolute left-1/2 top-1/2 w-[78vw] max-w-[22rem] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.05] text-left shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] backdrop-blur transition-[transform,opacity] duration-700 ease-out ${
+              className={`absolute left-1/2 top-1/2 w-[78vw] max-w-[22rem] md:max-w-[30rem] lg:max-w-[34rem] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.05] text-left shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] backdrop-blur transition-[transform,opacity] duration-700 ease-out ${
                 visible ? "" : "pointer-events-none"
               } ${active === i ? "ring-1 ring-[color:var(--color-cyan-400)]/40" : ""}`}
               style={{
