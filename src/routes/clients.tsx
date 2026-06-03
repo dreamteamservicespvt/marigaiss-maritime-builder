@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { CTABand, PageHero, SectionHeading } from "@/components/site/ui";
+import { AutoScroller } from "@/components/site/AutoScroller";
 import galleryTugboat from "@/assets/gallery-tugboat.jpg";
 import galleryCrane from "@/assets/gallery-crane.jpg";
 import galleryFerry from "@/assets/gallery-ferry.jpg";
@@ -209,9 +210,13 @@ function ClientsPage() {
             Trusted across maritime & industrial operations
           </p>
         </div>
-        <div className="logo-marquee mt-8">
-          <div className="logo-marquee__track">
-            {[
+        <AutoScroller
+          direction="left"
+          speed={50}
+          className="logo-marquee mt-8"
+          trackClassName="gap-6"
+        >
+          {[
               { name: "Anchor Co.", icon: Anchor },
               { name: "Harbor Ltd.", icon: Building2 },
               { name: "Cargo+", icon: Ship },
@@ -232,9 +237,8 @@ function ClientsPage() {
                 <n.icon className="h-5 w-5 text-[color:var(--color-ocean-500)]" />
                 {n.name}
               </div>
-            ))}
-          </div>
-        </div>
+          ))}
+        </AutoScroller>
       </section>
 
       <CTABand title="Looking for a maritime delivery partner you can call directly?" />
