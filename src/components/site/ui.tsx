@@ -21,10 +21,14 @@ export function SectionHeading({
     <Reveal className={`max-w-3xl ${center ? "mx-auto text-center" : ""}`}>
       {eyebrow && (
         <p
-          className={`mb-4 text-xs font-semibold uppercase tracking-[0.25em] ${
+          className={`mb-4 inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] ${
             light ? "text-[color:var(--color-cyan-400)]" : "text-[color:var(--color-ocean-500)]"
           }`}
         >
+          <span
+            aria-hidden
+            className={`h-px w-8 ${light ? "bg-[color:var(--color-cyan-400)]/60" : "bg-[color:var(--color-ocean-500)]/50"}`}
+          />
           {eyebrow}
         </p>
       )}
