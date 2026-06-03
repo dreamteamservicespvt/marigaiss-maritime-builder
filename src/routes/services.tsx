@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { CTABand, PageHero, SectionHeading } from "@/components/site/ui";
+import { AutoScroller } from "@/components/site/AutoScroller";
 import galleryTugboat from "@/assets/gallery-tugboat.jpg";
 import galleryCrane from "@/assets/gallery-crane.jpg";
 import galleryPropeller from "@/assets/gallery-propeller.jpg";
@@ -183,9 +184,13 @@ function ServicesPage() {
           />
           {/* Mobile: horizontal auto-scroll right → left */}
           <div className="mt-12 sm:hidden">
-            <div className="card-marquee -mx-5 px-5">
-              <div className="card-marquee__track">
-                {[...PROCESS, ...PROCESS].map((p, i) => (
+            <AutoScroller
+              direction="left"
+              speed={45}
+              className="card-marquee -mx-5 px-5"
+              trackClassName="gap-4"
+            >
+              {[...PROCESS, ...PROCESS].map((p, i) => (
                   <div
                     key={p.title + i}
                     className="flex w-[78vw] max-w-[19rem] shrink-0 flex-col overflow-hidden rounded-2xl border border-[color:var(--color-steel-200)] bg-white shadow-[var(--shadow-card)]"
@@ -205,9 +210,8 @@ function ServicesPage() {
                       <p className="mt-2 text-xs leading-relaxed text-slate-600">{p.body}</p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+              ))}
+            </AutoScroller>
           </div>
           <div className="mt-14 hidden auto-rows-fr gap-6 sm:grid md:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((p, i) => (
