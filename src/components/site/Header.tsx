@@ -119,21 +119,8 @@ export function Header() {
         <div
           className="relative h-full overflow-y-auto bg-gradient-to-b from-[color:var(--color-navy-900)] via-[color:var(--color-navy-800)] to-[color:var(--color-navy-900)]"
         >
-          <div className="container-x flex flex-col pt-6 pb-10">
-            <div className="flex items-center justify-between px-2">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[color:var(--color-cyan-400)]">
-                Menu
-              </p>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white transition hover:bg-white/10"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-            <nav className="mt-4 flex flex-col">
+          <div className="container-x flex flex-col pt-4 pb-10">
+            <nav className="flex flex-col">
               {NAV.map((item) => {
                 const active =
                   item.to === "/"
