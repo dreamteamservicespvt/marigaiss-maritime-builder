@@ -122,7 +122,7 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative isolate min-h-[100svh] overflow-hidden bg-hero">
+      <section className="relative isolate min-h-[100svh] overflow-hidden bg-hero grain">
         <div className="absolute inset-0 -z-10">
           <img
             src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=2000&q=80"
@@ -130,6 +130,12 @@ function HomePage() {
             className="h-full w-full object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-navy-900)]/85 via-[color:var(--color-navy-800)]/70 to-[color:var(--color-ocean-600)]/60" />
+          <div className="absolute inset-0 bg-mesh opacity-70" aria-hidden />
+          <div
+            className="absolute -top-40 -right-40 h-[36rem] w-[36rem] rounded-full opacity-30 blur-3xl"
+            style={{ background: "var(--gradient-aurora)" }}
+            aria-hidden
+          />
         </div>
 
         <div className="container-x flex min-h-[100svh] flex-col justify-center pt-28 pb-24">
@@ -165,14 +171,14 @@ function HomePage() {
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 to="/services"
-                className="group inline-flex items-center gap-2 rounded-xl bg-cta px-6 py-3.5 text-sm font-semibold text-white shadow-[var(--shadow-elegant)] transition hover:-translate-y-0.5"
+                className="group sheen inline-flex items-center gap-2 rounded-xl bg-cta px-6 py-3.5 text-sm font-semibold text-white shadow-[var(--shadow-glow)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-12px_rgba(34,184,207,0.6)]"
               >
                 Explore Services
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
+                className="glass inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-[color:var(--color-cyan-400)]/60"
               >
                 Contact Us
               </Link>
