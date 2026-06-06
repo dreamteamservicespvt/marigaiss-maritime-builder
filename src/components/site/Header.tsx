@@ -44,15 +44,15 @@ export function Header() {
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[var(--ease-out-expo)] ${
         onHero
           ? "bg-transparent"
-          : "border-b border-white/10 bg-[color:var(--color-navy-900)]/70 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.5)]"
+          : "border-b border-[color:var(--color-border)] bg-white/90 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.08)]"
       }`}
     >
       <div className="container-x flex h-20 items-center justify-between py-3 md:h-24">
-        <Link to="/" className="flex items-center gap-3 text-white">
+        <Link to="/" className={`flex items-center gap-3 transition-colors duration-500 ${onHero ? "text-white" : "text-[color:var(--color-foreground)]"}`}>
           <img
             src={logoAsset.url}
             alt="Marigaisss India Pvt. Ltd."
-            className="h-14 w-auto object-contain drop-shadow-[0_6px_18px_rgba(0,0,0,0.55)] transition-transform duration-500 hover:scale-[1.03] md:h-20 lg:h-[5.5rem]"
+            className={`h-14 w-auto object-contain transition-transform duration-500 hover:scale-[1.03] md:h-20 lg:h-[5.5rem] ${onHero ? "drop-shadow-[0_6px_18px_rgba(0,0,0,0.55)]" : "drop-shadow-[0_2px_8px_rgba(0,0,0,0.12)]"}`}
           />
         </Link>
 
@@ -66,7 +66,7 @@ export function Header() {
               <Link
                 key={item.to}
                 to={item.to}
-                className="group relative px-4 py-2 text-sm font-medium text-white/85 transition hover:text-white"
+                className={`group relative px-4 py-2 text-sm font-medium transition ${onHero ? "text-white/85 hover:text-white" : "text-[color:var(--color-foreground)]/80 hover:text-[color:var(--color-foreground)]"}`}
               >
                 {item.label}
                 <span
@@ -95,7 +95,7 @@ export function Header() {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-white lg:hidden"
+          className={`inline-flex h-11 w-11 items-center justify-center rounded-lg lg:hidden transition-colors duration-500 ${onHero ? "text-white" : "text-[color:var(--color-foreground)]"}`}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -106,15 +106,15 @@ export function Header() {
           backdrop-filter / transform creates a containing block that would
           break `position: fixed` on inner pages. */}
       <div
-        className={`fixed inset-0 top-20 z-[60] origin-top bg-[color:var(--color-navy-900)] transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 top-20 z-[60] origin-top bg-white transition-opacity duration-300 lg:hidden ${
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden={!open}
       >
         {/* Solid backdrop layer — guarantees opacity regardless of stacking */}
-        <div className="absolute inset-0 bg-[color:var(--color-navy-900)]" aria-hidden />
+        <div className="absolute inset-0 bg-white" aria-hidden />
         <div
-          className="relative h-full overflow-y-auto bg-gradient-to-b from-[color:var(--color-navy-900)] via-[color:var(--color-navy-800)] to-[color:var(--color-navy-900)]"
+          className="relative h-full overflow-y-auto bg-gradient-to-b from-white via-[color:var(--color-mist-50)] to-white"
         >
           <div className="container-x flex flex-col pt-4 pb-10">
             <nav className="flex flex-col">
@@ -124,15 +124,15 @@ export function Header() {
                     ? location.pathname === "/"
                     : location.pathname.startsWith(item.to);
                 return (
-                  <Link
+                <Link
                     key={item.to}
                     to={item.to}
-                    className={`group flex items-center justify-between border-b border-white/5 px-2 py-4 font-display text-xl font-semibold transition ${
-                      active ? "text-[color:var(--color-cyan-400)]" : "text-white"
+                    className={`group flex items-center justify-between border-b border-[color:var(--color-border)] px-2 py-4 font-display text-xl font-semibold transition ${
+                      active ? "text-[color:var(--color-cyan-400)]" : "text-[color:var(--color-foreground)]"
                     }`}
                   >
                     <span>{item.label}</span>
-                    <ArrowRight className="h-4 w-4 text-[color:var(--color-steel-300)] transition group-hover:translate-x-1 group-hover:text-[color:var(--color-cyan-400)]" />
+                    <ArrowRight className="h-4 w-4 text-[color:var(--color-muted-foreground)] transition group-hover:translate-x-1 group-hover:text-[color:var(--color-cyan-400)]" />
                   </Link>
                 );
               })}
@@ -149,20 +149,20 @@ export function Header() {
               <ArrowRight className="h-4 w-4" />
             </a>
 
-            <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+            <div className="mt-8 rounded-2xl border border-[color:var(--color-border)] bg-[color:var(--color-muted)] p-5">
               <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[color:var(--color-cyan-400)]">
                 Reach us directly
               </p>
               <a
                 href="mailto:marigaissindia@gmail.com"
-                className="mt-3 flex items-center gap-3 text-sm text-white"
+                className="mt-3 flex items-center gap-3 text-sm text-[color:var(--color-foreground)]"
               >
                 <Mail className="h-4 w-4 text-[color:var(--color-cyan-400)]" />
                 marigaissindia@gmail.com
               </a>
               <a
                 href="tel:+91"
-                className="mt-2 flex items-center gap-3 text-sm text-[color:var(--color-steel-200)]"
+                className="mt-2 flex items-center gap-3 text-sm text-[color:var(--color-muted-foreground)]"
               >
                 <Phone className="h-4 w-4 text-[color:var(--color-cyan-400)]" />
                 Kakinada, Andhra Pradesh
