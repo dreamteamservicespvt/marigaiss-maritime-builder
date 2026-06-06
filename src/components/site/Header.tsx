@@ -106,15 +106,15 @@ export function Header() {
           backdrop-filter / transform creates a containing block that would
           break `position: fixed` on inner pages. */}
       <div
-        className={`fixed inset-0 top-20 z-[60] origin-top bg-[color:var(--color-navy-900)] transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 top-20 z-[60] origin-top bg-white transition-opacity duration-300 lg:hidden ${
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden={!open}
       >
         {/* Solid backdrop layer — guarantees opacity regardless of stacking */}
-        <div className="absolute inset-0 bg-[color:var(--color-navy-900)]" aria-hidden />
+        <div className="absolute inset-0 bg-white" aria-hidden />
         <div
-          className="relative h-full overflow-y-auto bg-gradient-to-b from-[color:var(--color-navy-900)] via-[color:var(--color-navy-800)] to-[color:var(--color-navy-900)]"
+          className="relative h-full overflow-y-auto bg-gradient-to-b from-white via-[color:var(--color-mist-50)] to-white"
         >
           <div className="container-x flex flex-col pt-4 pb-10">
             <nav className="flex flex-col">
