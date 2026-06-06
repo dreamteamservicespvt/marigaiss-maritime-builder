@@ -48,11 +48,11 @@ export function Header() {
       }`}
     >
       <div className="container-x flex h-20 items-center justify-between py-3 md:h-24">
-        <Link to="/" className="flex items-center gap-3 text-[color:var(--color-foreground)]">
+        <Link to="/" className={`flex items-center gap-3 transition-colors duration-500 ${onHero ? "text-white" : "text-[color:var(--color-foreground)]"}`}>
           <img
             src={logoAsset.url}
             alt="Marigaisss India Pvt. Ltd."
-            className="h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.12)] transition-transform duration-500 hover:scale-[1.03] md:h-20 lg:h-[5.5rem]"
+            className={`h-14 w-auto object-contain transition-transform duration-500 hover:scale-[1.03] md:h-20 lg:h-[5.5rem] ${onHero ? "drop-shadow-[0_6px_18px_rgba(0,0,0,0.55)]" : "drop-shadow-[0_2px_8px_rgba(0,0,0,0.12)]"}`}
           />
         </Link>
 
