@@ -66,7 +66,7 @@ export function Header() {
               <Link
                 key={item.to}
                 to={item.to}
-                className="group relative px-4 py-2 text-sm font-medium text-[color:var(--color-foreground)]/80 transition hover:text-[color:var(--color-foreground)]"
+                className={`group relative px-4 py-2 text-sm font-medium transition ${onHero ? "text-white/85 hover:text-white" : "text-[color:var(--color-foreground)]/80 hover:text-[color:var(--color-foreground)]"}`}
               >
                 {item.label}
                 <span
@@ -95,7 +95,7 @@ export function Header() {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-[color:var(--color-foreground)] lg:hidden"
+          className={`inline-flex h-11 w-11 items-center justify-center rounded-lg lg:hidden transition-colors duration-500 ${onHero ? "text-white" : "text-[color:var(--color-foreground)]"}`}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
