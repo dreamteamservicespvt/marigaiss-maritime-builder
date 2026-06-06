@@ -149,20 +149,20 @@ export function Header() {
               <ArrowRight className="h-4 w-4" />
             </a>
 
-            <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+            <div className="mt-8 rounded-2xl border border-[color:var(--color-border)] bg-[color:var(--color-muted)] p-5">
               <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[color:var(--color-cyan-400)]">
                 Reach us directly
               </p>
               <a
                 href="mailto:marigaissindia@gmail.com"
-                className="mt-3 flex items-center gap-3 text-sm text-white"
+                className="mt-3 flex items-center gap-3 text-sm text-[color:var(--color-foreground)]"
               >
                 <Mail className="h-4 w-4 text-[color:var(--color-cyan-400)]" />
                 marigaissindia@gmail.com
               </a>
               <a
                 href="tel:+91"
-                className="mt-2 flex items-center gap-3 text-sm text-[color:var(--color-steel-200)]"
+                className="mt-2 flex items-center gap-3 text-sm text-[color:var(--color-muted-foreground)]"
               >
                 <Phone className="h-4 w-4 text-[color:var(--color-cyan-400)]" />
                 Kakinada, Andhra Pradesh
