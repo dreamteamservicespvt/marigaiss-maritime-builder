@@ -44,15 +44,15 @@ export function Header() {
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[var(--ease-out-expo)] ${
         onHero
           ? "bg-transparent"
-          : "border-b border-white/10 bg-[color:var(--color-navy-900)]/70 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.5)]"
+          : "border-b border-[color:var(--color-border)] bg-white/90 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.08)]"
       }`}
     >
       <div className="container-x flex h-20 items-center justify-between py-3 md:h-24">
-        <Link to="/" className="flex items-center gap-3 text-white">
+        <Link to="/" className="flex items-center gap-3 text-[color:var(--color-foreground)]">
           <img
             src={logoAsset.url}
             alt="Marigaisss India Pvt. Ltd."
-            className="h-14 w-auto object-contain drop-shadow-[0_6px_18px_rgba(0,0,0,0.55)] transition-transform duration-500 hover:scale-[1.03] md:h-20 lg:h-[5.5rem]"
+            className="h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.12)] transition-transform duration-500 hover:scale-[1.03] md:h-20 lg:h-[5.5rem]"
           />
         </Link>
 
@@ -66,7 +66,7 @@ export function Header() {
               <Link
                 key={item.to}
                 to={item.to}
-                className="group relative px-4 py-2 text-sm font-medium text-white/85 transition hover:text-white"
+                className="group relative px-4 py-2 text-sm font-medium text-[color:var(--color-foreground)]/80 transition hover:text-[color:var(--color-foreground)]"
               >
                 {item.label}
                 <span
