@@ -43,8 +43,12 @@
   --color-ocean-600: #114f85;
   --color-ocean-500: #1565a6;
   --color-ocean-400: #2a7fc4;
-  --color-cyan-500: #1aa3b8;
-  --color-cyan-400: #22b8cf;
+  /* Brand accent — MIPL red (mapped onto legacy "cyan" tokens so all
+     existing references pick up the new accent without churn). */
+  --color-cyan-500: #c8102e;
+  --color-cyan-400: #e11d2a;
+  --color-red-500: #c8102e;
+  --color-red-400: #e11d2a;
   --color-steel-300: #94a3b8;
   --color-steel-200: #cbd5e1;
   --color-mist-50: #f5f8fb;
@@ -54,20 +58,20 @@
   --shadow-elegant: 0 20px 50px -20px color-mix(in oklab, #0a1a2f 35%, transparent);
   --shadow-card: 0 10px 30px -15px color-mix(in oklab, #0a1a2f 25%, transparent);
 
-  --gradient-hero: linear-gradient(135deg, #0a1a2f 0%, #0f2c4d 55%, #114f85 100%);
-  --gradient-cta: linear-gradient(135deg, #1565a6 0%, #22b8cf 100%);
+  --gradient-hero: linear-gradient(135deg, #0a1a2f 0%, #0f2c4d 55%, #1a2456 100%);
+  --gradient-cta: linear-gradient(135deg, #c8102e 0%, #e11d2a 100%);
 
   /* Premium additions */
   --shadow-1: 0 1px 2px rgba(10,26,47,0.06), 0 1px 1px rgba(10,26,47,0.04);
   --shadow-2: 0 8px 24px -12px rgba(10,26,47,0.18), 0 2px 6px -2px rgba(10,26,47,0.08);
   --shadow-3: 0 30px 60px -30px rgba(10,26,47,0.45), 0 12px 30px -15px rgba(10,26,47,0.18);
-  --shadow-glow: 0 0 0 1px color-mix(in oklab, #22b8cf 25%, transparent), 0 12px 40px -10px color-mix(in oklab, #22b8cf 45%, transparent);
-  --ring-brand: 0 0 0 3px color-mix(in oklab, #22b8cf 40%, transparent);
+  --shadow-glow: 0 0 0 1px color-mix(in oklab, #e11d2a 25%, transparent), 0 12px 40px -10px color-mix(in oklab, #e11d2a 45%, transparent);
+  --ring-brand: 0 0 0 3px color-mix(in oklab, #e11d2a 40%, transparent);
 
-  --gradient-mesh: radial-gradient(60% 80% at 20% 10%, color-mix(in oklab, #22b8cf 25%, transparent) 0%, transparent 60%),
-                   radial-gradient(50% 60% at 80% 30%, color-mix(in oklab, #1565a6 35%, transparent) 0%, transparent 65%),
+  --gradient-mesh: radial-gradient(60% 80% at 20% 10%, color-mix(in oklab, #e11d2a 22%, transparent) 0%, transparent 60%),
+                   radial-gradient(50% 60% at 80% 30%, color-mix(in oklab, #1a2456 45%, transparent) 0%, transparent 65%),
                    radial-gradient(70% 70% at 50% 100%, color-mix(in oklab, #0a1a2f 80%, transparent) 0%, transparent 70%);
-  --gradient-aurora: conic-gradient(from 180deg at 50% 50%, #0a1a2f, #114f85, #22b8cf, #1565a6, #0a1a2f);
+  --gradient-aurora: conic-gradient(from 180deg at 50% 50%, #0a1a2f, #1a2456, #e11d2a, #c8102e, #0a1a2f);
   --gradient-sheen: linear-gradient(110deg, transparent 25%, rgba(255,255,255,0.22) 50%, transparent 75%);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -85,19 +89,19 @@
   --card-foreground: #0b1220;
   --popover: #ffffff;
   --popover-foreground: #0b1220;
-  --primary: #1565a6;
+  --primary: #1a2456;
   --primary-foreground: #ffffff;
   --secondary: #f5f8fb;
   --secondary-foreground: #0a1a2f;
   --muted: #f5f8fb;
   --muted-foreground: #475569;
-  --accent: #22b8cf;
-  --accent-foreground: #0a1a2f;
+  --accent: #e11d2a;
+  --accent-foreground: #ffffff;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #1565a6;
+  --ring: #e11d2a;
 }
 
 @layer base {
