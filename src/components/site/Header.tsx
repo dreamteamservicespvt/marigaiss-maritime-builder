@@ -132,7 +132,7 @@ export function Header() {
                     }`}
                   >
                     <span>{item.label}</span>
-                    <ArrowRight className="h-4 w-4 text-[color:var(--color-steel-300)] transition group-hover:translate-x-1 group-hover:text-[color:var(--color-cyan-400)]" />
+                    <ArrowRight className="h-4 w-4 text-[color:var(--color-muted-foreground)] transition group-hover:translate-x-1 group-hover:text-[color:var(--color-cyan-400)]" />
                   </Link>
                 );
               })}
