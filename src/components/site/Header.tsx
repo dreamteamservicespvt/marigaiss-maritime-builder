@@ -1,7 +1,8 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Anchor, ArrowRight, Mail, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, Mail, Menu, Phone, X } from "lucide-react";
 import { whatsappQuoteUrl } from "@/lib/whatsapp";
+import logoAsset from "@/assets/mipl-logo.png.asset.json";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -48,11 +49,11 @@ export function Header() {
     >
       <div className="container-x flex h-18 items-center justify-between py-4">
         <Link to="/" className="flex items-center gap-3 text-white">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-cta">
-            <Anchor className="h-5 w-5 text-white" />
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white shadow-[var(--shadow-card)] ring-1 ring-white/20">
+            <img src={logoAsset.url} alt="Marigaisss India Pvt. Ltd. logo" className="h-9 w-9 object-contain" />
           </span>
           <span className="leading-none">
-            <span className="block font-display text-lg font-bold tracking-tight">MARIGAISS</span>
+            <span className="block font-display text-lg font-bold tracking-tight">MARIGAISSS</span>
             <span className="block text-[10px] tracking-[0.2em] text-[color:var(--color-steel-200)]">
               INDIA PVT. LTD.
             </span>
