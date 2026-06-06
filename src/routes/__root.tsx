@@ -109,11 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap",
       },
-      {
-        rel: "icon",
-        href:
-          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231565a6'/%3E%3Cpath d='M16 7v18M9 13c0 4 3 7 7 7s7-3 7-7M11 9a2 2 0 1 0 0 .01M16 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0z' stroke='white' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
-      },
+      { rel: "icon", type: "image/png", href: logoAsset.url },
     ],
   }),
   shellComponent: RootShell,
