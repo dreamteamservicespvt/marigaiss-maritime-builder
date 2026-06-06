@@ -95,7 +95,7 @@ export function Header() {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-white lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-[color:var(--color-foreground)] lg:hidden"
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
