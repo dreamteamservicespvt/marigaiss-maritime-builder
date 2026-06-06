@@ -16,7 +16,9 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { location } = useRouterState();
-  const onHero = location.pathname === "/" && !scrolled;
+  // Always use the light (white) header style for maximum logo visibility.
+  const onHero = false;
+  void scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
