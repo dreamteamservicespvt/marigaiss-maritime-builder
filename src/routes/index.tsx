@@ -153,6 +153,10 @@ function HomePage() {
               className="max-w-5xl text-balance font-display font-bold text-white"
               style={{ fontSize: "clamp(2rem, 6vw, 4.5rem)" }}
             >
+              <span className="bg-gradient-to-r from-[color:var(--color-cyan-400)] to-white bg-clip-text text-transparent">
+                Marigaiss India
+              </span>
+              <br />
               Engineering the{" "}
               <span className="bg-gradient-to-r from-[color:var(--color-cyan-400)] to-white bg-clip-text text-transparent">
                 Maritime Edge
