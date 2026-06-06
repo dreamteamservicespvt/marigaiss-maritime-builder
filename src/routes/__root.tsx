@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
 import { BackToTop } from "../components/site/ui";
+import { LogoSplash } from "../components/site/LogoSplash";
 import { Toaster } from "../components/ui/sonner";
 
 function NotFoundComponent() {
@@ -141,6 +142,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <LogoSplash />
       <Header />
       <main key={pathname} className="page-enter min-h-screen">
         <Outlet />

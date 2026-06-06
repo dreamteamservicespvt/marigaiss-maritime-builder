@@ -49,14 +49,12 @@ export function Header() {
     >
       <div className="container-x flex h-18 items-center justify-between py-4">
         <Link to="/" className="flex items-center gap-3 text-white">
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white shadow-[var(--shadow-card)] ring-1 ring-white/20">
-            <img src={logoAsset.url} alt="Marigaisss India Pvt. Ltd. logo" className="h-9 w-9 object-contain" />
-          </span>
-          <span className="leading-none">
-            <span className="block font-display text-lg font-bold tracking-tight">MARIGAISSS</span>
-            <span className="block text-[10px] tracking-[0.2em] text-[color:var(--color-steel-200)]">
-              INDIA PVT. LTD.
-            </span>
+          <span className="flex h-14 items-center justify-center rounded-2xl bg-white px-2 py-1 shadow-[var(--shadow-card)] ring-1 ring-white/15 transition hover:shadow-[var(--shadow-glow)]">
+            <img
+              src={logoAsset.url}
+              alt="Marigaisss India Pvt. Ltd."
+              className="h-10 w-auto object-contain md:h-11"
+            />
           </span>
         </Link>
 
