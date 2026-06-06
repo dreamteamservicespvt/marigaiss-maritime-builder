@@ -108,7 +108,7 @@ export function Header() {
           backdrop-filter / transform creates a containing block that would
           break `position: fixed` on inner pages. */}
       <div
-        className={`fixed inset-0 top-20 z-[60] origin-top bg-white transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 top-14 z-[60] origin-top bg-white transition-opacity duration-300 lg:hidden ${
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden={!open}
