@@ -49,12 +49,12 @@ export function Header() {
           : "border-b border-[color:var(--color-border)] bg-white/90 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.08)]"
       }`}
     >
-      <div className="container-x flex h-20 items-center justify-between py-3 md:h-24">
+      <div className="container-x flex h-14 items-center justify-between py-2 md:h-16">
         <Link to="/" className={`flex items-center gap-3 transition-colors duration-500 ${onHero ? "text-white" : "text-[color:var(--color-foreground)]"}`}>
           <img
             src={logoAsset.url}
             alt="Marigaisss India Pvt. Ltd."
-            className={`h-14 w-auto object-contain transition-transform duration-500 hover:scale-[1.03] md:h-20 lg:h-[5.5rem] ${onHero ? "drop-shadow-[0_6px_18px_rgba(0,0,0,0.55)]" : "drop-shadow-[0_2px_8px_rgba(0,0,0,0.12)]"}`}
+            className={`h-10 w-auto object-contain transition-transform duration-500 hover:scale-[1.03] md:h-12 ${onHero ? "drop-shadow-[0_6px_18px_rgba(0,0,0,0.55)]" : "drop-shadow-[0_2px_8px_rgba(0,0,0,0.12)]"}`}
           />
         </Link>
 
@@ -108,7 +108,7 @@ export function Header() {
           backdrop-filter / transform creates a containing block that would
           break `position: fixed` on inner pages. */}
       <div
-        className={`fixed inset-0 top-20 z-[60] origin-top bg-white transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 top-14 z-[60] origin-top bg-white transition-opacity duration-300 lg:hidden ${
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden={!open}
