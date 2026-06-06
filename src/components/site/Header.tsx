@@ -49,13 +49,11 @@ export function Header() {
     >
       <div className="container-x flex h-18 items-center justify-between py-4">
         <Link to="/" className="flex items-center gap-3 text-white">
-          <span className="flex h-14 items-center justify-center rounded-2xl bg-white px-2 py-1 shadow-[var(--shadow-card)] ring-1 ring-white/15 transition hover:shadow-[var(--shadow-glow)]">
-            <img
-              src={logoAsset.url}
-              alt="Marigaisss India Pvt. Ltd."
-              className="h-10 w-auto object-contain md:h-11"
-            />
-          </span>
+          <img
+            src={logoAsset.url}
+            alt="Marigaisss India Pvt. Ltd."
+            className="h-11 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)] transition md:h-14 lg:h-16"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">

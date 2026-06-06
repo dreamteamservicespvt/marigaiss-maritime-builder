@@ -9,13 +9,11 @@ export function Footer() {
       <div className="container-x grid grid-cols-2 gap-6 py-10 md:gap-12 md:py-16 lg:grid-cols-4">
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-3 text-white">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white ring-1 ring-white/15 md:h-11 md:w-11">
-              <img src={logoAsset.url} alt="MIPL logo" className="h-8 w-8 object-contain md:h-9 md:w-9" />
-            </span>
-            <span>
-              <span className="block font-display text-base font-bold md:text-lg">MARIGAISSS</span>
-              <span className="block text-[10px] tracking-[0.2em]">INDIA PVT. LTD.</span>
-            </span>
+            <img
+              src={logoAsset.url}
+              alt="Marigaisss India Pvt. Ltd."
+              className="h-12 w-auto object-contain md:h-14"
+            />
           </div>
           <p className="mt-4 max-w-xs text-xs leading-relaxed md:mt-5 md:text-sm">
             Marine equipment supply, heavy-machinery rental and precision machined components,
@@ -91,7 +89,20 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col items-start justify-between gap-2 py-4 text-[11px] text-[color:var(--color-steel-300)] md:flex-row md:items-center md:py-6 md:text-xs">
           <p>© 2019–{year} Marigaiss India Private Limited. All rights reserved.</p>
-          <p className="font-mono">CIN: U74999AP2019PTC112057</p>
+          <div className="flex flex-col items-start gap-1 md:flex-row md:items-center md:gap-5">
+            <p className="font-mono">CIN: U74999AP2019PTC112057</p>
+            <p>
+              Designed &amp; Developed By{" "}
+              <a
+                href="https://www.thedreamteamservices.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-white transition hover:text-[color:var(--color-cyan-400)]"
+              >
+                DREAM TEAM SERVICES
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
