@@ -124,11 +124,11 @@ export function Header() {
                     ? location.pathname === "/"
                     : location.pathname.startsWith(item.to);
                 return (
-                  <Link
+                <Link
                     key={item.to}
                     to={item.to}
-                    className={`group flex items-center justify-between border-b border-white/5 px-2 py-4 font-display text-xl font-semibold transition ${
-                      active ? "text-[color:var(--color-cyan-400)]" : "text-white"
+                    className={`group flex items-center justify-between border-b border-[color:var(--color-border)] px-2 py-4 font-display text-xl font-semibold transition ${
+                      active ? "text-[color:var(--color-cyan-400)]" : "text-[color:var(--color-foreground)]"
                     }`}
                   >
                     <span>{item.label}</span>
