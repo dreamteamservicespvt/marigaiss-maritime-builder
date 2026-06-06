@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Anchor, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
+import logoAsset from "@/assets/mipl-logo.png.asset.json";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -8,11 +9,11 @@ export function Footer() {
       <div className="container-x grid grid-cols-2 gap-6 py-10 md:gap-12 md:py-16 lg:grid-cols-4">
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-3 text-white">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-cta md:h-10 md:w-10">
-              <Anchor className="h-4 w-4 text-white md:h-5 md:w-5" />
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white ring-1 ring-white/15 md:h-11 md:w-11">
+              <img src={logoAsset.url} alt="MIPL logo" className="h-8 w-8 object-contain md:h-9 md:w-9" />
             </span>
             <span>
-              <span className="block font-display text-base font-bold md:text-lg">MARIGAISS</span>
+              <span className="block font-display text-base font-bold md:text-lg">MARIGAISSS</span>
               <span className="block text-[10px] tracking-[0.2em]">INDIA PVT. LTD.</span>
             </span>
           </div>
